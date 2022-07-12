@@ -107,5 +107,5 @@
   - [**React.js官方文档**](https://reactjs.org/docs/getting-started.html)
   - [**Jenkins中文文档**](https://www.jenkins.io/zh/doc/)
 - 技能提升
-  - [Java核心知识点](技能提升/Java核心知识点.md)
-  - [大数据技术知识点](技能提升/大数据技术.md)
+  - [**Java核心知识点**](技能提升/Java核心知识点.md)
+  - [**大数据技术知识点**](技能提升/大数据技术.md)
