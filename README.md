@@ -1,16 +1,16 @@
 
 <p align="center">
-    <a href="http://47.107.248.251:9000/" target="_blank">
+    <a href="https://sfzsjx.github.io/document_classfication/" target="_blank">
         <img src="head.png" width=""/>
     </a>
 </p>
 
 
 <p align="center">
-  <a href="http://47.107.248.251:9000/" target="_blank"><img src="https://img.shields.io/badge/Github-r2coding-red.svg"></a>
-  <a href="http://47.107.248.251:9000/" target="_blank"><img src="https://img.shields.io/badge/Gitee-r2coding-blue.svg"></a>
-  <a href="http://47.107.248.251:9000/" target="_blank"><img src="https://img.shields.io/badge/bilibili-哔哩哔哩-critical"></a>
-  <a href="http://47.107.248.251:9000/" target="_blank">
+  <a href="https://sfzsjx.github.io/document_classfication/" target="_blank"><img src="https://img.shields.io/badge/Github-document_classfication-red.svg"></a>
+  <a href="https://sfzsjx.github.io/document_classfication/" target="_blank"><img src="https://img.shields.io/badge/Gitee-document_classfication-blue.svg"></a>
+  <a href="https://sfzsjx.github.io/document_classfication/" target="_blank"><img src="https://img.shields.io/badge/bilibili-哔哩哔哩-critical"></a>
+  <a href="https://sfzsjx.github.io/document_classfication/" target="_blank">
     <img src="https://img.shields.io/badge/微信联系作者-WeChat-green.svg" alt="微信联系">
   </a>
 </p>
@@ -36,7 +36,7 @@
 # **本站内容地图**
 ---
 
-![](https://cdn.jsdelivr.net/gh/justacoder99/r2coding@master/img/contentmap.3sdmma4od740.png)
+![](个人知识库.jpg)
 
 
 

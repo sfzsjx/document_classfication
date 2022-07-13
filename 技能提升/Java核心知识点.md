@@ -683,15 +683,14 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class MyThread extends Thread {
->     public void run(){
->     System.out.println("MyThread.run()"); 
->    }
+>        public void run(){
+>            System.out.println("MyThread.run()"); 
+>        }
 > }
 > MyThread myThread1 = new MyThread(); 
 > myThread1.start(); 
 > ```
 >
-> 
 
 ### 3.2.2 实现Runnable接口。
 
@@ -699,9 +698,9 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class MyThread extends OtherClass implements Runnable {
->     public void run(){
->     System.out.println("MyThread.run()"); 
->    }
+>        public void run(){
+>            System.out.println("MyThread.run()"); 
+>        }
 > }
 > 
 > //启动 MyThread，需要首先实例化一个 Thread，并传入自己的 MyThread 实例：
@@ -710,13 +709,12 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > thread.start(); 
 > //事实上，当传入一个 Runnable target 参数给 Thread 后，Thread 的 run()方法就会调用target.run()
 > public void run(){
->     if (target != null){
->     target.run(); 
->    }
+>        if (target != null){
+>            target.run(); 
+>        }
 > }
 > ```
 >
-> 
 
 ### 3.2.3 ExecutorService、Callable\<Class>、Future有返回值线程
 
@@ -728,18 +726,18 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > //创建多个有返回值的任务
 > List<Future> list = new ArrayList<Future>(); 
 > for (int i = 0; i < taskSize; i++){
->     Callable c = new MyCallable(i +""); 
->    //执行任务并获取 Future 对象
->     Future f = pool.submit(c); 
->     list.add(f); 
+>        Callable c = new MyCallable(i +""); 
+>        //执行任务并获取 Future 对象
+>        Future f = pool.submit(c); 
+>        list.add(f); 
 > }
 > 
 > //关闭线程池
 > pool.shutdown(); 
 > //获取所有并发任务的运行结果
 > for (Future f : list){
->    //从 Future 对象上获取任务的返回值，并输出到控制台
->     System.out.println("res："+ f.get().toString()); 
+>        //从 Future 对象上获取任务的返回值，并输出到控制台
+>        System.out.println("res："+ f.get().toString()); 
 > }
 > ```
 >
@@ -754,17 +752,17 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ExecutorService threadPool = Executors.newFixedThreadPool(10);
 > while(true){
 >     threadPool.execute(new Runnable(){
->    //提交多个线程任务，并执行
->    @Override
->     public void run(){
->     System.out.println(Thread.currentThread().getName()+" is running ..");
->     try {
->     Thread.sleep(3000);
->    } catch (InterruptedException e){
->     e.printStackTrace();
->    }
->    }
->    });
+>         //提交多个线程任务，并执行
+>         @Override
+>         public void run(){
+>             System.out.println(Thread.currentThread().getName()+" is running ..");
+>             try {
+>                 Thread.sleep(3000);
+>             } catch (InterruptedException e){
+>                 e.printStackTrace();
+>             }
+>         }
+>     });
 > }
 > ```
 >
@@ -796,17 +794,17 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ScheduledExecutorService scheduledThreadPool= Executors.newScheduledThreadPool(3); 
 > 
 > scheduledThreadPool.schedule(newRunnable(){
->    @Override 
->     public void run(){
->     System.out.println("延迟三秒");
->    }
+>        @Override 
+>        public void run(){
+>            System.out.println("延迟三秒");
+>        }
 > },3, TimeUnit.SECONDS);
 > 
 > scheduledThreadPool.scheduleAtFixedRate(newRunnable(){
->    @Override 
->     public void run(){
->     System.out.println("延迟1 秒后每三秒执行一次");
->    }
+>        @Override 
+>        public void run(){
+>            System.out.println("延迟1 秒后每三秒执行一次");
+>        }
 > },1,3,TimeUnit.SECONDS);
 > ```
 >
@@ -882,12 +880,12 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class ThreadSafe extends Thread {
->     public volatile boolean exit = false; 
->     public void run(){
->     while (!exit){
->    //do something
->    }
->    }
+>        public volatile boolean exit = false; 
+>        public void run(){
+>            while (!exit){
+>                //do something
+>            }
+>        }
 > }
 > ```
 >
@@ -902,16 +900,16 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class ThreadSafe extends Thread {
->  public void run(){
->  while (!isInterrupted()){//非阻塞过程中通过判断中断标志来退出
->  try{
->  Thread.sleep(51000);//阻塞过程捕获中断异常来退出
-> }catch(InterruptedException e){
->  e.printStackTrace();
->  break;//捕获到异常之后，执行 break 跳出循环
-> }
-> }
-> }
+>     public void run(){
+>         while (!isInterrupted()){//非阻塞过程中通过判断中断标志来退出
+>             try{
+>                 Thread.sleep(51000);//阻塞过程捕获中断异常来退出
+>             }catch(InterruptedException e){
+>                 e.printStackTrace();
+>                 break;//捕获到异常之后，执行 break 跳出循环
+>             }
+>         }
+>     }
 > }
 > ```
 >
@@ -985,13 +983,13 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > 但是如果锁的竞争激烈，或者持有锁的线程需要长时间占用锁执行同步块，这时候就不适合使用自旋锁了，因为自旋锁在获取锁前一直都是占用 cpu 做无用功，占着 XX 不 XX，同时有大量线程在竞争一个锁，会导致获取锁的时间很长，线程自旋的消耗大于线程阻塞挂起操作的消耗，其它需要 cup 的线程又不能获取到 cpu，造成 cpu 的浪费。所以这种情况下我们要关闭自旋锁；
 >
-> 自旋锁时间阈值（1.6引入了适应性自旋锁）
+> `自旋锁时间阈值（1.6引入了适应性自旋锁）`
 >
 > 自旋锁的目的是为了占着 CPU 的资源不释放，等到获取到锁立即进行处理。但是如何去选择自旋的执行时间呢？如果自旋执行时间太长，会有大量的线程处于自旋状态占用CPU 资源，进而会影响整体系统的性能。因此自旋的周期选的额外重要！
 >
 > JVM 对于自旋周期的选择，jdk1.5 这个限度是一定的写死的，在1.6 引入了适应性自旋锁，适应性自旋锁意味着自旋的时间不在是固定的了，而是由前一次在同一个锁上的自旋时间以及锁的拥有者的状态来决定，基本认为一个线程上下文切换的时间是最佳的一个时间，同时 JVM 还针对当前 CPU 的负荷情况做了较多的优化，如果平均负载小于 CPUs 则一直自旋，如果有超过(CPUs/2)个线程正在自旋，则后来线程直接阻塞，如果正在自旋的线程发现 Owner 发生了变化则延迟自旋时间（自旋计数）或进入阻塞，如果 CPU 处于节电模式则停止自旋，自旋时间的最坏情况是 CPU的存储延迟（CPU A 存储了一个数据，到 CPU B 得知这个数据直接的时间差），自旋时会适当放弃线程优先级之间的差异。
 >
-> 自旋锁的开启
+> `自旋锁的开启`
 >
 > JDK1.6 中-XX:+UseSpinning 开启；
 >
@@ -1015,12 +1013,12 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > **Synchronized 核心组件**
 >
->     1) Wait Set:哪些调用 wait 方法被阻塞的线程被放置在这里;
->     2) Contention List:竞争队列,所有请求锁的线程首先被放在这个竞争队列中;
->     3) Entry List:Contention List 中那些有资格成为候选资源的线程被移动到 Entry List 中;
->     4) OnDeck:任意时刻,最多只有一个线程正在竞争锁资源,该线程被成为 OnDeck;
->     5) Owner:当前已经获取到所资源的线程被称为 Owner;
->     6)!Owner:当前释放锁的线程。
+> 1) Wait Set:哪些调用 wait 方法被阻塞的线程被放置在这里;
+> 2) Contention List:竞争队列,所有请求锁的线程首先被放在这个竞争队列中;
+> 3) Entry List:Contention List 中那些有资格成为候选资源的线程被移动到 Entry List 中;
+> 4) OnDeck:任意时刻,最多只有一个线程正在竞争锁资源,该线程被成为 OnDeck;
+> 5) Owner:当前已经获取到所资源的线程被称为 Owner;
+> 6) !Owner:当前释放锁的线程。
 >
 > **Synchronized 实现**
 >
@@ -1086,29 +1084,29 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class MyService {
->  private Lock lock = new ReentrantLock();
-> //Lock lock=new ReentrantLock(true);//公平锁
-> //Lock lock=new ReentrantLock(false);//非公平锁
->  private Condition condition=lock.newCondition();//创建 Condition
->  public void testMethod(){
->  try {
->  lock.lock();//lock 加锁
-> //1:wait 方法等待:
-> //System.out.println("开始 wait");
->  condition.await();
-> //通过创建 Condition 对象来使线程 wait,必须先执行 lock.lock 方法获得锁
+>     private Lock lock = new ReentrantLock();
+>     //Lock lock=new ReentrantLock(true);//公平锁
+>     //Lock lock=new ReentrantLock(false);//非公平锁
+>     private Condition condition=lock.newCondition();//创建 Condition
+>     public void testMethod(){
+>         try {
+>             lock.lock();//lock 加锁
+>             //1:wait 方法等待:
+>             //System.out.println("开始 wait");
+>             condition.await();
+>             //通过创建 Condition 对象来使线程 wait,必须先执行 lock.lock 方法获得锁
 > 
-> //:2:signal 方法唤醒
->  condition.signal();//condition 对象的 signal 方法可以唤醒 wait 线程
->  for (int i = 0; i < 5; i++){
->  System.out.println("ThreadName="+ Thread.currentThread().getName()+(""+(i+1)));
-> }
-> } catch (InterruptedException e){
->  e.printStackTrace();
-> }finally{
->  lock.unlock();
-> }
-> }
+>             //:2:signal 方法唤醒
+>             condition.signal();//condition 对象的 signal 方法可以唤醒 wait 线程
+>             for (int i = 0; i < 5; i++){
+>                 System.out.println("ThreadName="+Thread.currentThread().getName()+(""+(i+1)));
+>             }
+>         } catch (InterruptedException e){
+>             e.printStackTrace();
+>         }finally{
+>             lock.unlock();
+>         }
+>     }
 > }
 > ```
 >
@@ -1149,18 +1147,18 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > //只能5 个线程同时访问
 > Semaphore semp = new Semaphore(5);
 > try {
->    //申请许可
->     semp.acquire();
->     try {
->    //业务逻辑
->    } catch (Exception e){
->         
->    } finally {
->    //释放许可
->     semp.release();
->    }
+>        //申请许可
+>        semp.acquire();
+>        try {
+>            //业务逻辑
+>        } catch (Exception e){
+>                 
+>        } finally {
+>            //释放许可
+>            semp.release();
+>        }
 > } catch (InterruptedException e){
->     
+>         
 > }
 > ```
 >
@@ -1436,7 +1434,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize, long keepAliveTime,TimeUnit unit, BlockingQueue<Runnable> workQueue){
->  this(corePoolSize, maximumPoolSize, keepAliveTime, unit,workQueue,Executors.defaultThreadFactory(), defaultHandler);
+>     this(corePoolSize, maximumPoolSize, keepAliveTime, unit,workQueue,Executors.defaultThreadFactory(), defaultHandler);
 > }
 > ```
 >
@@ -1522,21 +1520,19 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public void put(E paramE) throws InterruptedException {
->  checkNotNull(paramE);
->  ReentrantLock localReentrantLock = this.lock;
->  localReentrantLock.lockInterruptibly();
->  try {
->  while (this.count == this.items.length)
->  this.notFull.await();//如果队列满了，则线程阻塞等待
->  enqueue(paramE);
->  localReentrantLock.unlock();
-> } finally {
->  localReentrantLock.unlock();
-> }
+>     checkNotNull(paramE);
+>     ReentrantLock localReentrantLock = this.lock;
+>     localReentrantLock.lockInterruptibly();
+>     try {
+>         while (this.count == this.items.length)
+>             this.notFull.await();//如果队列满了，则线程阻塞等待
+>         enqueue(paramE);
+>         localReentrantLock.unlock();
+>     } finally {
+>         localReentrantLock.unlock();
+>     }
 > }
 > ```
->
-> 
 >
 > 4：offer(E o, long timeout, TimeUnit unit)：可以设定等待的时间，如果在指定的时间内，还不能往队列中加入 BlockingQueue，则返回失败。
 >
@@ -1636,7 +1632,6 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > latch.await();
 > System.out.println("2 个子线程已经执行完毕");
 > System.out.println("继续执行主线程");
-> }
 > ```
 >
 > 
@@ -1656,30 +1651,32 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public static void main(String[] args){
->  int N = 4;
->  CyclicBarrier barrier = new CyclicBarrier(N);
->  for(int i=0;i<N;i++)
->  new Writer(barrier).start();
+>     int N = 4;
+>     CyclicBarrier barrier = new CyclicBarrier(N);
+>     for(int i=0;i<N;i++){
+>         new Writer(barrier).start();
+>     }
 > }
 > 
 > static class Writer extends Thread{
->  private CyclicBarrier cyclicBarrier;
->  public Writer(CyclicBarrier cyclicBarrier){
->  this.cyclicBarrier = cyclicBarrier;
-> }
-> @Override
->  public void run(){
->  try {
->  Thread.sleep(5000); //以睡眠来模拟线程需要预定写入数据操作
->  System.out.println("线程"+Thread.currentThread().getName()+"写入数据完毕，等待其他线程写入完毕");
->  cyclicBarrier.await();
-> } catch (InterruptedException e){
->  e.printStackTrace();
-> }catch(BrokenBarrierException e){
->  e.printStackTrace();
-> }
->  System.out.println("所有线程写入完毕，继续处理其他任务，比如数据操作");
-> }
+>     private CyclicBarrier cyclicBarrier;
+>     public Writer(CyclicBarrier cyclicBarrier){
+>         this.cyclicBarrier = cyclicBarrier;
+>     }
+>     
+>     @Override
+>     public void run(){
+>         try {
+>             Thread.sleep(5000); //以睡眠来模拟线程需要预定写入数据操作
+>             System.out.println("线程"+Thread.currentThread().getName()+"写入数据完毕，等待其他线程写入完毕");
+>             cyclicBarrier.await();
+>         } catch (InterruptedException e){
+>             e.printStackTrace();
+>         }catch(BrokenBarrierException e){
+>             e.printStackTrace();
+>         }
+>         System.out.println("所有线程写入完毕，继续处理其他任务，比如数据操作");
+>     }
 > }
 > ```
 >
@@ -1713,28 +1710,29 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ```java
 > int N = 8; //工人数
 > Semaphore semaphore = new Semaphore(5); //机器数目
-> for(int i=0;i<N;i++)
->  new Worker(i,semaphore).start();
+> for(int i=0;i<N;i++){
+>     new Worker(i,semaphore).start();
 > }
 > 
 > static class Worker extends Thread{
->  private int num;
->  private Semaphore semaphore;
->  public Worker(int num,Semaphore semaphore){
->  this.num = num;
->  this.semaphore = semaphore;
-> }
-> @Override
->  public void run(){
->  try {
->  semaphore.acquire();
->  System.out.println("工人"+this.num+"占用一个机器在生产...");
->  Thread.sleep(2000);
->  System.out.println("工人"+this.num+"释放出机器");
->  semaphore.release();
-> } catch (InterruptedException e){
->  e.printStackTrace();
-> }
+>     private int num;
+>     private Semaphore semaphore;
+>     public Worker(int num,Semaphore semaphore){
+>         this.num = num;
+>         this.semaphore = semaphore;
+>     }
+> 
+>     @Override
+>     public void run(){
+>         try {
+>             semaphore.acquire();
+>             System.out.println("工人"+this.num+"占用一个机器在生产...");
+>             Thread.sleep(2000);
+>             System.out.println("工人"+this.num+"释放出机器");
+>             semaphore.release();
+>         } catch (InterruptedException e){
+>             e.printStackTrace();
+>         }
 > }
 > ```
 >
@@ -1779,51 +1777,51 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class MyData {
->     private int j=0;
->     public synchronized void add(){
->     j++;
->     System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
->    }
+>        private int j=0;
+>        public synchronized void add(){
+>            j++;
+>            System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
+>        }
 > 
->     public synchronized void dec(){
->     j--;
->     System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
->    }
+>        public synchronized void dec(){
+>            j--;
+>            System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
+>        }
 > 
->     public int getData(){
->     return j;
->    }
+>        public int getData(){
+>            return j;
+>        }
 > }
 > 
 > public class AddRunnable implements Runnable{
->     MyData data;
->     public AddRunnable(MyData data){
->     this.data= data;
->    }
->     public void run(){
->     data.add();
->    }
+>        MyData data;
+>        public AddRunnable(MyData data){
+>            this.data= data;
+>        }
+>        public void run(){
+>            data.add();
+>        }
 > }
 > 
 > public class DecRunnable implements Runnable {
->     MyData data;
->     public DecRunnable(MyData data){
->     this.data = data;
->    }
+>        MyData data;
+>        public DecRunnable(MyData data){
+>            this.data = data;
+>        }
 >     
->     public void run(){
->     data.dec();
->    }
+>        public void run(){
+>            data.dec();
+>        }
 > }
 > 
 > public static void main(String[] args){
->     MyData data = new MyData();
->     Runnable add = new AddRunnable(data);
->     Runnable dec = new DecRunnable(data);
->     for(int i=0;i<2;i++){
->     new Thread(add).start();
->     new Thread(dec).start();
->    }
+>        MyData data = new MyData();
+>        Runnable add = new AddRunnable(data);
+>        Runnable dec = new DecRunnable(data);
+>        for(int i=0;i<2;i++){
+>            new Thread(add).start();
+>            new Thread(dec).start();
+>        }
 > }
 > ```
 >
@@ -1833,36 +1831,36 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class MyData {
->     private int j=0;
->    public synchronized void add(){
->     j++;
->     System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
->    }
->     public synchronized void dec(){
->     j--;
->     System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
->    }
->     public int getData(){
->     return j;
->    }
+>        private int j=0;
+>        public synchronized void add(){
+>            j++;
+>            System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
+>        }
+>        public synchronized void dec(){
+>            j--;
+>            System.out.println("线程"+Thread.currentThread().getName()+"j 为："+j);
+>        }
+>        public int getData(){
+>            return j;
+>        }
 > }
 > 
 > public class TestThread {
->     public static void main(String[] args){
->     final MyData data = new MyData();
->     for(int i=0;i<2;i++){
->     new Thread(new Runnable(){
->     public void run(){
->     data.add();
->    }
->    }).start();
->     new Thread(new Runnable(){
->     public void run(){
->     data.dec();
->    }
->    }).start();
->    }
->    }
+>        public static void main(String[] args){
+>            final MyData data = new MyData();
+>            for(int i=0;i<2;i++){
+>                new Thread(new Runnable(){
+>                    public void run(){
+>                        data.add();
+>                    }
+>                }).start();
+>                new Thread(new Runnable(){
+>                    public void run(){
+>                        data.dec();
+>                    }
+>                }).start();
+>            }
+>        }
 > }
 > ```
 >
@@ -1889,16 +1887,16 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ```java
 > private static final ThreadLocal threadSession = new ThreadLocal(); 
 > public static Session getSession() throws InfrastructureException {
->  Session s = (Session) threadSession.get(); 
->  try {
->  if (s == null){
->  s = getSessionFactory().openSession(); 
->  threadSession.set(s); 
-> }
-> } catch (HibernateException ex){
->  throw new InfrastructureException(ex); 
-> }
->  return s; 
+>     Session s = (Session) threadSession.get(); 
+>     try {
+>         if (s == null){
+>             s = getSessionFactory().openSession(); 
+>             threadSession.set(s); 
+>         }
+>     } catch (HibernateException ex){
+>         throw new InfrastructureException(ex); 
+>     }
+>     return s; 
 > }
 > ```
 
@@ -2046,22 +2044,22 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class AtomicInteger extends Number implements java.io.Serializable {
->     private volatile int value;
->     public final int get(){
->     return value;
->    }
+>        private volatile int value;
+>        public final int get(){
+>            return value;
+>        }
 >     
->     public final int getAndIncrement(){
->     for (;;){//CAS 自旋，一直尝试，直达成功
->     int current = get();
->     int next = current +1;
->     if (compareAndSet(current, next))
->     return current;
+>    public final int getAndIncrement(){
+>        for (;;){//CAS 自旋，一直尝试，直达成功
+>            int current = get();
+>            int next = current +1;
+>            if (compareAndSet(current, next))
+>                return current;
+>        }
 >    }
->    }
->     public final boolean compareAndSet(int expect, int update){
->     return unsafe.compareAndSwapInt(this, valueOffset, expect, update);
->    }
+>        public final boolean compareAndSet(int expect, int update){
+>            return unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+>        }
 > }
 > ```
 >
@@ -2169,16 +2167,16 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public static void main(String[] args){
->     String s = "abc";
->     if(s.equals("abc")){
->     throw new NumberFormatException();
->    } else {
->     System.out.println(s);
->    }
+>        String s = "abc";
+>        if(s.equals("abc")){
+>            throw new NumberFormatException();
+>        } else {
+>            System.out.println(s);
+>        }
 > }
 > 
 > int div(int a,int b) throws Exception{
->     return a/b;
+>        return a/b;
 > }
 > ```
 >
@@ -2214,7 +2212,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 **编译时类型和运行时类型**
 
-> 在 Java 程序中许多对象在运行是都会出现两种类型：编译时类型和运行时类型。编译时的类型由声明对象时实用的类型来决定，运行时的类型由实际赋值给对象的类型决定。如：
+> 在 Java 程序中许多对象在运行时都会出现两种类型：编译时类型和运行时类型。编译时的类型由声明对象时实用的类型来决定，运行时的类型由实际赋值给对象的类型决定。如：
 >
 > ```java
 > Person p = new Student();
@@ -2276,19 +2274,19 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > //获取 Person 类的所有方法信息
 > Method[] method=clazz.getDeclaredMethods();
 > for(Method m:method){
->     System.out.println(m.toString());
+>        System.out.println(m.toString());
 > }
 > 
 > //获取 Person 类的所有成员属性信息
 > Field[] field=clazz.getDeclaredFields();
 > for(Field f:field){
->     System.out.println(f.toString());
+>        System.out.println(f.toString());
 > }
 > 
 > //获取 Person 类的所有构造方法信息
 > Constructor[] constructor=clazz.getDeclaredConstructors();
 > for(Constructor c:constructor){
->     System.out.println(c.toString());
+>        System.out.println(c.toString());
 > }
 > ```
 >
@@ -2319,9 +2317,8 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 ### 4.3.1 概念
 
-> Annotation（注解）是 Java 提供的一种对元程序中元素关联信息和元数据（metadata）的途径和方法。
+> Annotation（注解）是 Java 提供的一种对元程序中元素关联信息和元数据（metadata）的途径和方法。Annatation(注解)是一个接口，程序可以通过反射来获取指定程序中元素的 Annotation对象，然后通过该Annotation 对象来获取注解中的元数据信息。
 >
-> Annatation(注解)是一个接口，程序可以通过反射来获取指定程序中元素的 Annotation对象，然后通过该Annotation 对象来获取注解中的元数据信息。
 
 ### 4.3.2 4 种标准元注解
 
@@ -2335,7 +2332,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ***@Retention 定义被保留的时间长短***
 >
-> Retention 定义了该Annotation 被保留的时间长短：表示需要在什么级别保存注解信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效），取值（RetentionPoicy）由：
+> Retention 定义了该Annotation 被保留的时间长短：表示需要在什么级别保存注解信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效），取值（RetentionPoicy）有：
 >
 > -   SOURCE:在源文件中有效（即源文件保留）
 > -   CLASS:在 class 文件中有效（即 class 保留）
@@ -2367,48 +2364,48 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > @Retention(RetentionPolicy.RUNTIME)
 > @Documented
 > public @interface FruitProvider {
->  /**供应商编号*/
->  public int id() default -1;
->  /***供应商名称*/
->  public String name() default "";
->  /***供应商地址*/
->  public String address() default "";
+>      /**供应商编号*/
+>      public int id() default -1;
+>      /***供应商名称*/
+>      public String name() default "";
+>      /***供应商地址*/
+>      public String address() default "";
 > }
 > 
 > //2：注解使用
 > public class Apple {
->  @FruitProvider(id = 1, name = "陕西红富士集团", address = "陕西省西安市延安路")
->  private String appleProvider;
->  public void setAppleProvider(String appleProvider){
->     this.appleProvider = appleProvider;
->  }
->  public String getAppleProvider(){
->     return appleProvider;
->  }
+>      @FruitProvider(id = 1, name = "陕西红富士集团", address = "陕西省西安市延安路")
+>      private String appleProvider;
+>      public void setAppleProvider(String appleProvider){
+>            this.appleProvider = appleProvider;
+>      }
+>      public String getAppleProvider(){
+>            return appleProvider;
+>      }
 > }
 > 
 > //3：***********注解处理器***************/
 > public class FruitInfoUtil {
->     public static void getFruitInfo(Class<?> clazz){
->     String strFruitProvicer = "供应商信息：";
->     Field[] fields = clazz.getDeclaredFields();
->    //通过反射获取处理注解
->     for (Field field : fields){
->     if (field.isAnnotationPresent(FruitProvider.class)){
->     FruitProvider fruitProvider = (FruitProvider)field.getAnnotation(FruitProvider.class);
->    //注解信息的处理地方
->     strFruitProvicer = "供应商编号："+ fruitProvider.id()+"供应商名称："+ fruitProvider.name()+"供应商地址："+ fruitProvider.address(); 
->     System.out.println(strFruitProvicer);
->    }
->    }
->    }
+>        public static void getFruitInfo(Class<?> clazz){
+>            String strFruitProvicer = "供应商信息：";
+>            Field[] fields = clazz.getDeclaredFields();
+>            //通过反射获取处理注解
+>            for (Field field : fields){
+>                if (field.isAnnotationPresent(FruitProvider.class)){
+>                    FruitProvider fruitProvider = (FruitProvider)field.getAnnotation(FruitProvider.class);
+>                    //注解信息的处理地方
+>                    strFruitProvicer = "供应商编号："+ fruitProvider.id()+"供应商名称："+ fruitProvider.name()+"供应商地址："+ fruitProvider.address(); 
+>                    System.out.println(strFruitProvicer);
+>                }
+>            }
+>        }
 > }
 > public class FruitRun {
->     public static void main(String[] args){
->     FruitInfoUtil.getFruitInfo(Apple.class);
->    /***********输出结果***************/
->    //供应商编号：1 供应商名称：陕西红富士集团供应商地址：陕西省西安市延
->    }
+>        public static void main(String[] args){
+>            FruitInfoUtil.getFruitInfo(Apple.class);
+>            /***********输出结果***************/
+>            //供应商编号：1 供应商名称：陕西红富士集团供应商地址：陕西省西安市延
+>        }
 > }
 > ```
 >
@@ -2423,13 +2420,13 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class Out {
->     private static int a;
->     private int b;
->     public static class Inner {
->     public void print(){
->     System.out.println(a);
->    }
->    }
+>        private static int a;
+>        private int b;
+>        public static class Inner {
+>            public void print(){
+>                System.out.println(a);
+>            }
+>        }
 > }
 > ```
 >
@@ -2452,14 +2449,14 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class Out {
->     private static int a;
->     private int b;
->     public class Inner {
->     public void print(){
->     System.out.println(a);
->     System.out.println(b);
->    }
->    }
+>        private static int a;
+>        private int b;
+>        public class Inner {
+>            public void print(){
+>                System.out.println(a);
+>                System.out.println(b);
+>            }
+>        }
 > }
 > ```
 
@@ -2469,16 +2466,16 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class Out {
->     private static int a;
->     private int b;
->     public void test(final int c){
->     final int d = 1;
->     class Inner {
->     public void print(){
->     System.out.println(c);
->    }
->    }
->    }
+>        private static int a;
+>        private int b;
+>        public void test(final int c){
+>            final int d = 1;
+>            class Inner {
+>                public void print(){
+>                    System.out.println(c);
+>                }
+>            }
+>        }
 > }
 > ```
 
@@ -2488,37 +2485,35 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public abstract class Bird {
->     private String name;
->     public String getName(){
->     return name;
->    }
-> 
->     public void setName(String name){
->     this.name = name;
->    }
-> 
+>        private String name;
+>        public String getName(){
+>            return name;
+>        }
+>     
+>        public void setName(String name){
+>            this.name = name;
+>        }
 >     public abstract int fly();
-> }
+>    }
 > 
 > public class Test {
 >     public void test(Bird bird){
->     System.out.println(bird.getName()+"能够飞"+ bird.fly()+"米");
->    }
-> 
+>            System.out.println(bird.getName()+"能够飞"+ bird.fly()+"米");
+>        }
+>        
 >     public static void main(String[] args){
->     Test test = new Test();
->     test.test(new Bird(){
->     public int fly(){
->     return 10000;
+>            Test test = new Test();
+>            test.test(new Bird(){
+>                public int fly(){
+>                    return 10000;
+>                }
+>                public String getName(){
+>                    return "大雁";
+>                }});
+>        }
 >    }
->     public String getName(){
->     return "大雁";
->    }
->    });
->    }
-> }
-> ```
->
+>    ```
+> 
 > 
 
 ## 4.5 JAVA 泛型
@@ -2532,9 +2527,9 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ```java
 > //泛型方法 printArray
 > public static < E > void printArray( E[] inputArray ){
->     for ( E element : inputArray ){
->     System.out.printf("%s ", element );
->    }
+>        for ( E element : inputArray ){
+>            System.out.printf("%s ", element );
+>        }
 > }
 > ```
 >
@@ -2548,13 +2543,13 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class Box<T> {
->     private T t;
->     public void add(T t){
->     this.t = t;
->    }
->     public T get(){
->     return t;
->    }
+>        private T t;
+>        public void add(T t){
+>            this.t = t;
+>        }
+>        public T get(){
+>            return t;
+>        }
 > ```
 >
 > 
@@ -2629,13 +2624,13 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ```java
 > class Resume implements Cloneable{
 >     public Object clone(){
->     try {
->     return (Resume)super.clone();
->    } catch (Exception e){
->     e.printStackTrace();
->     return null;
->    }
->    }
+>         try {
+>             return (Resume)super.clone();
+>        } catch (Exception e){
+>             e.printStackTrace();
+>             return null;
+>         }
+>     }
 > }
 > ```
 >
@@ -2650,22 +2645,23 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >     String name;
 >     int age;
 >     Professor p;
+> 
 >     Student(String name, int age, Professor p){
->     this.name = name;
->     this.age = age;
->     this.p = p;
->    }
+>         this.name = name;
+>         this.age = age;
+>         this.p = p;
+>     }
 > 
 >     public Object clone(){
->     Student o = null;
->     try {
->     o = (Student) super.clone();
->    } catch (CloneNotSupportedException e){
->     System.out.println(e.toString());
->    }
->     o.p = (Professor) p.clone();
->     return o;
->    }
+>         Student o = null;
+>         try {
+>             o = (Student) super.clone();
+>         } catch (CloneNotSupportedException e){
+>             System.out.println(e.toString());
+>         }
+>         o.p = (Professor) p.clone();
+>         return o;
+>     }
 > }
 > ```
 >
@@ -2685,11 +2681,11 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 ## 5.1 Spring 特点
 
-> 1. ###### 轻量级
+> 1. 轻量级
 >
-> 2. ###### 控制反转
+> 2. 控制反转
 >
-> 3. ###### 面向切面
+> 3. 面向切面
 >
 > 4.  **容器**
 >
@@ -2881,11 +2877,16 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > public CatDaoImpl(String message){
 >     this. message = message;
 > }
+> ```
+>
+> ```xml
 > <bean id="CatDaoImpl" class="com.CatDaoImpl">
->    <constructor-arg value=" message ">
->    </constructor-arg>
+>     <constructor-arg value=" message ">
+>     </constructor-arg>
 > </bean>
 > ```
+>
+> 
 >
 > ***2、setter 方法注入***
 >
@@ -2893,13 +2894,21 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > public class Id {
 >     private int id;
 >     public int getId(){
->     return id;
->    }
+>         return id;
+>     }
 >     public void setId(int id){
->     this.id = id; }
+>         this.id = id; }
 > }
-> <bean id="id" class="com.id "> <property name="id" value="123"></property> </bean>
 > ```
+>
+> ```xml
+> <bean id="id" class="com.id ">
+>     <property name="id" value="123">
+>     </property>
+> </bean>
+> ```
+>
+> 
 >
 > **3、静态工厂注入**
 >
@@ -2907,30 +2916,34 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class DaoFactory {
->    //静态工厂
+>     //静态工厂
 >     public static final FactoryDao getStaticFactoryDaoImpl(){
->     return new StaticFacotryDaoImpl();
->    }
+>         return new StaticFacotryDaoImpl();
+>     }
 > }
 > 
 > public class SpringAction {
 >     private FactoryDao staticFactoryDao; //注入对象
->    //注入对象的 set 方法
+>     //注入对象的 set 方法
 >     public void setStaticFactoryDao(FactoryDao staticFactoryDao){
->     this.staticFactoryDao = staticFactoryDao;
->    }
+>         this.staticFactoryDao = staticFactoryDao;
+>     }
 > }
+> ```
+>
+> ```xml
 > //factory-method="getStaticFactoryDaoImpl"指定调用哪个工厂方法
 > <bean name="springAction" class=" SpringAction">
->    <!--使用静态工厂的方法注入对象,对应下面的配置文件-->
->    <property name="staticFactoryDao" ref="staticFactoryDao"></property>
+>     <!--使用静态工厂的方法注入对象,对应下面的配置文件-->
+>     <property name="staticFactoryDao" ref="staticFactoryDao"></property>
 > </bean>
->     
+> 
 > <!--此处获取对象的方式是从工厂类中获取静态方法-->
-> <bean name="staticFactoryDao" class="DaoFactory"
->     factory-method="getStaticFactoryDaoImpl">
+> <bean name="staticFactoryDao" class="DaoFactory" factory-method="getStaticFactoryDaoImpl">
 > </bean>
 > ```
+>
+> 
 >
 > **4、实例工厂**
 >
@@ -2938,28 +2951,30 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public class DaoFactory {
->    //实例工厂
+>     //实例工厂
 >     public FactoryDao getFactoryDaoImpl(){
->     return new FactoryDaoImpl();
->    }
+>         return new FactoryDaoImpl();
+>     }
 > }
 > 
 > public class SpringAction {
 >     private FactoryDao factoryDao;
->    //注入对象
+>     //注入对象
 >     public void setFactoryDao(FactoryDao factoryDao){
->     this.factoryDao = factoryDao;
->    }
+>         this.factoryDao = factoryDao;
+>     }
 > }
-> 
+> ```
+>
+> ```xml
 > <bean name="springAction" class="SpringAction">
-> <!--使用实例工厂的方法注入对象,对应下面的配置文件-->
-> <property name="factoryDao" ref="factoryDao"></property>
+>     <!--使用实例工厂的方法注入对象,对应下面的配置文件-->
+>     <property name="factoryDao" ref="factoryDao"></property>
 > </bean>
+> 
 > <!--此处获取对象的方式是从工厂类中获取实例方法-->
 > <bean name="daoFactory" class="com.DaoFactory"></bean>
-> <bean name="factoryDao" factory-bean="daoFactory"
-> factory-method="getFactoryDaoImpl"></bean>
+> <bean name="factoryDao" factory-bean="daoFactory" factory-method="getFactoryDaoImpl"></bean>
 > ```
 >
 > 
@@ -3055,27 +3070,25 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ```JAVA
 > @Aspect
 > public class TransactionDemo {
->    @Pointcut(value="execution(* com.yangxin.core.service.*.*.*(..))")
->     public void point(){
->         
+>        @Pointcut(value="execution(* com.yangxin.core.service.*.*.*(..))")
+>        public void point(){}
+>             @Before(value="point()")
+>        public void before(){
+>            System.out.println("transaction begin");
+>        }
+>        @AfterReturning(value = "point()")
+>        public void after(){
+>            System.out.println("transaction commit");
+>        }
+>        @Around("point()")
+>        public void around(ProceedingJoinPoint joinPoint) throws Throwable{
+>            System.out.println("transaction begin");
+>            joinPoint.proceed();
+>            System.out.println("transaction commit");
+>        }
 >    }
->    @Before(value="point()")
->     public void before(){
->     System.out.println("transaction begin");
->    }
->    @AfterReturning(value = "point()")
->     public void after(){
->     System.out.println("transaction commit");
->    }
->    @Around("point()")
->     public void around(ProceedingJoinPoint joinPoint) throws Throwable{
->     System.out.println("transaction begin");
->     joinPoint.proceed();
->     System.out.println("transaction commit");
->    }
-> }
-> ```
->
+>    ```
+> 
 > ![image-20220322153554300](Java.assets/image-20220322153554300.png)
 
 ## 5.9 Spring MVC 原理
@@ -3144,27 +3157,27 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```JAVA
 > public void transferAccount(){
->     Connection conn = null;
->     Statement stmt = null;
->     try{
->     conn = getDataSource().getConnection();
->    //将自动提交设置为 false，若设置为 true 则数据库将会把每一次数据更新认定为一个事务并自动提交
->     conn.setAutoCommit(false);
->     stmt = conn.createStatement();
->    //将 A 账户中的金额减少500
->     stmt.execute("update t_account set amount = amount -500 where account_id = 'A'");
->    //将 B 账户中的金额增加500
->     stmt.execute("update t_account set amount = amount +500 where account_id = 'B'");
->    //提交事务
->     conn.commit();
->    //事务提交：转账的两步操作同时成功
->    } catch(SQLException sqle){
->    //发生异常，回滚在本事务中的操做
->     conn.rollback();
->    //事务回滚：转账的两步操作完全撤销
->     stmt.close();
->     conn.close();
->    }
+>        Connection conn = null;
+>        Statement stmt = null;
+>        try{
+>            conn = getDataSource().getConnection();
+>            //将自动提交设置为 false，若设置为 true 则数据库将会把每一次数据更新认定为一个事务并自动提交
+>            conn.setAutoCommit(false);
+>            stmt = conn.createStatement();
+>            //将 A 账户中的金额减少500
+>            stmt.execute("update t_account set amount = amount -500 where account_id = 'A'");
+>            //将 B 账户中的金额增加500
+>            stmt.execute("update t_account set amount = amount +500 where account_id = 'B'");
+>            //提交事务
+>            conn.commit();
+>            //事务提交：转账的两步操作同时成功
+>        } catch(SQLException sqle){
+>            //发生异常，回滚在本事务中的操做
+>            conn.rollback();
+>            //事务回滚：转账的两步操作完全撤销
+>            stmt.close();
+>            conn.close();
+>        }
 > }
 > ```
 >
@@ -3179,25 +3192,27 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > ```JAVA
 > public void transferAccount(){
 >     UserTransaction userTx = null;
->     Connection connA = null; Statement stmtA = null;
->     Connection connB = null; Statement stmtB = null;
+>     Connection connA = null; 
+>     Statement stmtA = null;
+>     Connection connB = null;
+>     Statement stmtB = null;
 >     try{
->    //获得 Transaction 管理对象
->     userTx = (UserTransaction)getContext().lookup("java:comp/UserTransaction");
->     connA = getDataSourceA().getConnection();//从数据库 A 中取得数据库连接
->     connB = getDataSourceB().getConnection();//从数据库 B 中取得数据库连接
->     userTx.begin(); //启动事务
->     stmtA = connA.createStatement();//将 A 账户中的金额减少500
->     stmtA.execute("update t_account set amount = amount -500 where account_id = 'A'");
->    //将 B 账户中的金额增加500
->     stmtB = connB.createStatement();
->     stmtB.execute("update t_account set amount = amount +500 where account_id = 'B'");
->     userTx.commit();//提交事务
->    //事务提交：转账的两步操作同时成功（数据库 A 和数据库 B 中的数据被同时更新）
->    } catch(SQLException sqle){
->    //发生异常，回滚在本事务中的操纵
->     userTx.rollback();//事务回滚：数据库 A 和数据库 B 中的数据更新被同时撤销
->    } catch(Exception ne){}
+>         //获得 Transaction 管理对象
+>         userTx = (UserTransaction)getContext().lookup("java:comp/UserTransaction");
+>         connA = getDataSourceA().getConnection();//从数据库 A 中取得数据库连接
+>         connB = getDataSourceB().getConnection();//从数据库 B 中取得数据库连接
+>         userTx.begin(); //启动事务
+>         stmtA = connA.createStatement();//将 A 账户中的金额减少500
+>         stmtA.execute("update t_account set amount = amount -500 where account_id = 'A'");
+>         //将 B 账户中的金额增加500
+>         stmtB = connB.createStatement();
+>         stmtB.execute("update t_account set amount = amount +500 where account_id = 'B'");
+>         userTx.commit();//提交事务
+>         //事务提交：转账的两步操作同时成功（数据库 A 和数据库 B 中的数据被同时更新）
+>     } catch(SQLException sqle){
+>         //发生异常，回滚在本事务中的操纵
+>         userTx.rollback();//事务回滚：数据库 A 和数据库 B 中的数据更新被同时撤销
+>     } catch(Exception ne){}
 > }
 > ```
 >
@@ -3560,22 +3575,22 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ```java
 > public Object get(){
->  synchronized (this){//旋锁
->  while (true){//是否有结果了
->  If （!isDone）{
->  wait(); //没结果释放锁，让当前线程处于等待状态
-> }else{//获取数据并处理
-> }
-> }
-> }
+>     synchronized (this){//旋锁
+>         while (true){//是否有结果了
+>             If （!isDone）{
+>                 wait(); //没结果释放锁，让当前线程处于等待状态
+>             }else{//获取数据并处理
+>             }
+>         }
+>     }
 > }
 > 
 > private void setDone(Response res){
->  this.res = res;
->  isDone = true;
->  synchronized (this){//获取锁，因为前面 wait()已经释放了 callback 的锁了
->  notifyAll(); //唤醒处于等待的线程
-> }
+>     this.res = res;
+>     isDone = true;
+>     synchronized (this){//获取锁，因为前面 wait()已经释放了 callback 的锁了
+>         notifyAll(); //唤醒处于等待的线程
+>     }
 > }
 > ```
 >
@@ -3599,7 +3614,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > >
 > > ```java
 > > public interface GreetService extends java.rmi.Remote {
-> >  String sayHello(String name) throws RemoteException;
+> >      String sayHello(String name) throws RemoteException;
 > > }
 > > ```
 > >
@@ -3607,14 +3622,14 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 > >
 > > ```java
 > > public class GreetServiceImpl extends java.rmi.server.UnicastRemoteObject implements GreetService {
-> >  private static final long serialVersionUID = 3434060152387200042L;
-> >  public GreetServiceImpl() throws RemoteException {
-> >  super();
-> > }
-> > @Override
-> >  public String sayHello(String name) throws RemoteException {
-> >  return "Hello "+ name;
-> > }
+> >      private static final long serialVersionUID = 3434060152387200042L;
+> >      public GreetServiceImpl() throws RemoteException {
+> >          super();
+> >     }
+> >     @Override
+> >      public String sayHello(String name) throws RemoteException {
+> >          return "Hello "+ name;
+> >     }
 > > }
 > > ```
 > >
@@ -4070,27 +4085,35 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 > 每个sever 首先给自己投票，然后用自己的选票和其他sever 选票对比，权重大的胜出，使用权重较大的更新自身选票箱。具体选举过程如下：
 >
-> 1.  每个 Server 启动以后都询问其它的 Server 它要投票给谁。对于其他 server 的询问，server 每次根据自己的状态都回复自己推荐的 leader 的 id 和上一次处理事务的 zxid（系统启动时每个server 都会推荐自己）
+> 1. 每个 Server 启动以后都询问其它的 Server 它要投票给谁。对于其他 server 的询问，server 每次根据自己的状态都回复自己推荐的 leader 的 id 和上一次处理事务的 zxid（系统启动时每个server 都会推荐自己）
 >
-> 2.  收到所有 Server 回复以后，就计算出 zxid 最大的哪个 Server，并将这个 Server 相关信息设置成下一次要投票的 Server。
+> 2. 收到所有 Server 回复以后，就计算出 zxid 最大的哪个 Server，并将这个 Server 相关信息设置成下一次要投票的 Server。
 >
-> 3.  计算这过程中获得票数最多的的 sever 为获胜者，如果获胜者的票数超过半数，则改server 被选为 leader。否则，继续这个过程，直到 leader 被选举出来
+> 3. 计算这过程中获得票数最多的的 sever 为获胜者，如果获胜者的票数超过半数，则改server 被选为 leader。否则，继续这个过程，直到 leader 被选举出来
 >
-> 4.  leader 就会开始等待 server 连接
-> 5.  Follower 连接 leader，将最大的 zxid 发送给 leader
-> 6.  Leader 根据follower 的 zxid 确定同步点，至此选举阶段完成。
-> 7.  选举阶段完成 Leader 同步后通知follower 已经成为 uptodate 状态
-> 8.  Follower 收到 uptodate 消息后，又可以重新接受 client 的请求进行服务了目前有5 台服务器，每台服务器均没有数据，它们的编号分别是1,2,3,4,5,按编号依次启动，它们的选择举过程如下：
+> 4. leader 就会开始等待 server 连接
 >
-> > ① 服务器1 启动，给自己投票，然后发投票信息，由于其它机器还没有启动所以它收不到反馈信息，服务器1 的状态一直属于 Looking。
-> >
-> > ② 服务器2 启动，给自己投票，同时与之前启动的服务器1 交换结果，由于服务器2 的编号大所以服务器2 胜出，但此时投票数没有大于半数，所以两个服务器的状态依然是LOOKING。
-> >
-> > ③ 服务器3 启动，给自己投票，同时与之前启动的服务器1,2 交换信息，由于服务器3 的编号最大所以服务器3 胜出，此时投票数正好大于半数，所以服务器3 成为领导者，服务器1,2 成为小弟。
-> >
-> > ④ 服务器4 启动，给自己投票，同时与之前启动的服务器1,2,3 交换信息，尽管服务器4 的编号大，但之前服务器3 已经胜出，所以服务器4 只能成为小弟。
-> >
-> > ⑤ 服务器5 启动，后面的逻辑同服务器4 成为小弟。
+> 5. Follower 连接 leader，将最大的 zxid 发送给 leader
+>
+> 6. Leader 根据follower 的 zxid 确定同步点，至此选举阶段完成。
+>
+> 7. 选举阶段完成 Leader 同步后通知follower 已经成为 uptodate 状态
+>
+> 8. Follower 收到 uptodate 消息后，又可以重新接受 client 的请求进行服务了
+>
+> 
+>
+> 目前有5 台服务器，每台服务器均没有数据，它们的编号分别是1,2,3,4,5,按编号依次启动，它们的选择举过程如下：
+>
+> ① 服务器1 启动，给自己投票，然后发投票信息，由于其它机器还没有启动所以它收不到反馈信息，服务器1 的状态一直属于 Looking。
+>
+> ② 服务器2 启动，给自己投票，同时与之前启动的服务器1 交换结果，由于服务器2 的编号大所以服务器2 胜出，但此时投票数没有大于半数，所以两个服务器的状态依然是LOOKING。
+>
+> ③ 服务器3 启动，给自己投票，同时与之前启动的服务器1,2 交换信息，由于服务器3 的编号最大所以服务器3 胜出，此时投票数正好大于半数，所以服务器3 成为领导者，服务器1,2 成为小弟。
+>
+> ④ 服务器4 启动，给自己投票，同时与之前启动的服务器1,2,3 交换信息，尽管服务器4 的编号大，但之前服务器3 已经胜出，所以服务器4 只能成为小弟。
+>
+> ⑤ 服务器5 启动，后面的逻辑同服务器4 成为小弟。
 
 
 
@@ -4216,7 +4239,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 ## 12.2 RabbitMQ 架构
 
-![image-20220322221817502](Java.assets/image-20220322221817502.png)
+ ![image-20220322221817502](Java.assets/image-20220322221817502.png)
 
 ### 12.2.1 Message
 
@@ -4895,15 +4918,13 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 > 扩展性有限。当服务器节点（普通 PC 服务器）增长过多时,负载均衡器将成为整个系统的瓶颈，因为所有的请求包和应答包的流向都经过负载均衡器。当服务器节点过多时，大量的数据包都交汇在负载均衡器那，速度就会变慢！
 
-### LVS DR 模式（局域网改写 mac 地址）
+### 17.3.3 LVS DR 模式（局域网改写 mac 地址）
 
-![](media/image125.jpeg){width="6.303298337707787in" height="3.482603893263342in"}
-
+> ![image-20220713114413537](Java核心知识点.assets/image-20220713114413537.png)
+>
 > ①.客户端将请求发往前端的负载均衡器，请求报文源地址是CIP，目标地址为 VIP。
 >
-> ②.负载均衡器收到报文后，发现请求的是在规则里面存在的地址，那么它将客户端请求报文的源
->
-> MAC 地址改为自己DIP 的 MAC 地址，目标 MAC 改为了 RIP 的MAC 地址，并将此包发送给 RS。
+> ②.负载均衡器收到报文后，发现请求的是在规则里面存在的地址，那么它将客户端请求报文的源MAC 地址改为自己DIP 的 MAC 地址，目标 MAC 改为了 RIP 的MAC 地址，并将此包发送给 RS。
 >
 > ③.RS 发现请求报文中的目的 MAC 是自己，就会将次报文接收下来，处理完请求报文后，将响应报文通过 lo 接口送给 eth0 网卡直接发送给客户端。
 >
@@ -4921,9 +4942,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > 5、RS 节点的默认网关不需要配置成 LB，而是直接配置为上级路由的网关，能让 RS 直接出网就可以。
 >
-> 6、由于 DR 模式的调度器仅做 MAC 地址的改写，所以调度器 LB 就不能改写目标端口，那么 RS
->
-> 服务器就得使用和 VIP 相同的端口提供服务。
+> 6、由于 DR 模式的调度器仅做 MAC 地址的改写，所以调度器 LB 就不能改写目标端口，那么 RS服务器就得使用和 VIP 相同的端口提供服务。
 >
 > 7、直接对外的业务比如 WEB 等，RS 的 IP 最好是使用公网 IP。对外的服务，比如数据库等最好使用内网 IP。
 
@@ -4931,37 +4950,34 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 > 和 TUN（隧道模式）一样，负载均衡器也只是分发请求，应答包通过单独的路由方法返回给客户端。与 VS-TUN 相比，VS-DR 这种实现方式不需要隧道结构，因此可以使用大多数操作系统做为物理服务器。
 >
-> DR 模式的效率很高，但是配置稍微复杂一点，因此对于访问量不是特别大的公司可以用
+> DR 模式的效率很高，但是配置稍微复杂一点，因此对于访问量不是特别大的公司可以用haproxy/nginx 取代。日1000-2000W PV 或者并发请求1 万一下都可以考虑用haproxy/nginx。
 >
-> haproxy/nginx 取代。日1000-2000W PV 或者并发请求1 万一下都可以考虑用haproxy/nginx。
 
 #### 缺点：
 
 > 所有 RS 节点和调度器 LB 只能在一个局域网里面
 
-### LVS TUN 模式（IP 封装、跨网段）
+### 17.3.4 LVS TUN 模式（IP 封装、跨网段）
 
-![](media/image126.jpeg){width="6.270766622922134in" height="3.5175in"}
-
+> ![image-20220713114716917](Java核心知识点.assets/image-20220713114716917.png)
+>
 > ①.客户端将请求发往前端的负载均衡器，请求报文源地址是CIP，目标地址为 VIP。
 >
 > ②.负载均衡器收到报文后，发现请求的是在规则里面存在的地址，那么它将在客户端请求报文的首部再封装一层 IP 报文,将源地址改为 DIP，目标地址改为 RIP,并将此包发送给 RS。
 >
-> ③.RS 收到请求报文后，会首先拆开第一层封装,然后发现里面还有一层 IP 首部的目标地址是自己
->
-> lo 接口上的VIP，所以会处理次请求报文，并将响应报文通过 lo 接口送给eth0 网卡直接发送给客户端。
+> ③.RS 收到请求报文后，会首先拆开第一层封装,然后发现里面还有一层 IP 首部的目标地址是自己lo 接口上的VIP，所以会处理次请求报文，并将响应报文通过 lo 接口送给eth0 网卡直接发送给客户端。
 >
 > 注意：需要设置 lo 接口的VIP 不能在共网上出现。
 
 #### 总结：
 
-1.  TUNNEL 模式必须在所有的 realserver 机器上面绑定 VIP 的 IP 地址
-
-2.  TUNNEL 模式的 vip \-\-\-\-\--\>realserver 的包通信通过 TUNNEL 模式，不管是内网和外网都能通信，所以不需要 lvs vip 跟 realserver 在同一个网段内。
-
-3.  TUNNEL 模式 realserver 会把 packet 直接发给 client 不会给 lvs 了
-
-4.  TUNNEL 模式走的隧道模式，所以运维起来比较难，所以一般不用。
+> 1.  TUNNEL 模式必须在所有的 realserver 机器上面绑定 VIP 的 IP 地址
+>
+> 2.  TUNNEL 模式的 vip \-\-\-\-\--\>realserver 的包通信通过 TUNNEL 模式，不管是内网和外网都能通信，所以不需要 lvs vip 跟 realserver 在同一个网段内。
+>
+> 3.  TUNNEL 模式 realserver 会把 packet 直接发给 client 不会给 lvs 了
+>
+> 4.  TUNNEL 模式走的隧道模式，所以运维起来比较难，所以一般不用。
 
 #### 优点：
 
@@ -4969,125 +4985,81 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 
 #### 缺点：
 
-> 隧道模式的 RS 节点需要合法 IP ，这种方式需要所有的服务器支持" IP Tunneling "(IP
+> 隧道模式的 RS 节点需要合法 IP ，这种方式需要所有的服务器支持" IP Tunneling "(IP Encapsulation)协议，服务器可能只局限在部分 Linux 系统上。
 >
-> Encapsulation)协议，服务器可能只局限在部分 Linux 系统上。
 
-### LVS FULLNAT 模式
+### 17.3.5 LVS FULLNAT 模式
 
-> 无论是 DR 还是 NAT 模式，不可避免的都有一个问题：LVS 和 RS 必须在同一个 VLAN 下，否则
->
-> LVS 无法作为 RS 的网关。这引发的两个问题是：
+> 无论是 DR 还是 NAT 模式，不可避免的都有一个问题：LVS 和 RS 必须在同一个 VLAN 下，否则LVS 无法作为 RS 的网关。这引发的两个问题是：
 >
 > 1、同一个 VLAN 的限制导致运维不方便，跨 VLAN 的 RS 无法接入。
 >
-> 2、LVS 的水平扩展受到制约。当 RS 水平扩容时，总有一天其上的单点 LVS 会成为瓶颈。
->
-> Full-NAT 由此而生，解决的是 LVS 和 RS 跨 VLAN 的问题，而跨 VLAN 问题解决后，LVS 和 RS
->
-> 不再存在 VLAN 上的从属关系，可以做到多个 LVS 对应多个 RS，解决水平扩容的问题。
+> 2、LVS 的水平扩展受到制约。当 RS 水平扩容时，总有一天其上的单点 LVS 会成为瓶颈。Full-NAT 由此而生，解决的是 LVS 和 RS 跨 VLAN 的问题，而跨 VLAN 问题解决后，LVS 和 RS不再存在 VLAN 上的从属关系，可以做到多个 LVS 对应多个 RS，解决水平扩容的问题。
 >
 > Full-NAT 相比 NAT 的主要改进是，在 SNAT/DNAT 的基础上，加上另一种转换，转换过程如下：
 >
-> ![](media/image127.jpeg){width="5.034386482939633in" height="3.5437489063867016in"}
-
-1.  在包从 LVS 转到 RS 的过程中，源地址从客户端 IP 被替换成了 LVS 的内网 IP。内网 IP 之间可以通过多个交换机跨 VLAN 通信。目标地址从 VIP 修改为 RS IP.
-
-2.  当 RS 处理完接受到的包，处理完成后返回时，将目标地址修改为 LVS ip，原地址修改为 RS
-
-> IP，最终将这个包返回给 LVS 的内网 IP，这一步也不受限于 VLAN。
-
-3.  LVS 收到包后，在 NAT 模式修改源地址的基础上，再把 RS 发来的包中的目标地址从 LVS 内网 IP 改为客户端的 IP,并将原地址修改为 VIP。
-
+> ![image-20220713114906723](Java核心知识点.assets/image-20220713114906723.png)
+>
+> 1.  在包从 LVS 转到 RS 的过程中，源地址从客户端 IP 被替换成了 LVS 的内网 IP。内网 IP 之间可以通过多个交换机跨 VLAN 通信。目标地址从 VIP 修改为 RS IP.
+>
+> 2.  当 RS 处理完接受到的包，处理完成后返回时，将目标地址修改为 LVS ip，原地址修改为 RS IP，最终将这个包返回给 LVS 的内网 IP，这一步也不受限于 VLAN。
+>
+> 3.  LVS 收到包后，在 NAT 模式修改源地址的基础上，再把 RS 发来的包中的目标地址从 LVS 内网 IP 改为客户端的 IP,并将原地址修改为 VIP。
+>
 > Full-NAT 主要的思想是把网关和其下机器的通信，改为了普通的网络通信，从而解决了跨 VLAN的问题。采用这种方式，LVS 和 RS 的部署在 VLAN 上将不再有任何限制，大大提高了运维部署的便利性。
 
 #### 总结
 
-1.  FULL NAT 模式不需要 LBIP 和 realserver ip 在同一个网段；
+> 1.  FULL NAT 模式不需要 LBIP 和 realserver ip 在同一个网段；
+> 2.  full nat 因为要更新 sorce ip 所以性能正常比 nat 模式下降10%
 
-2.  full nat 因为要更新 sorce ip 所以性能正常比 nat 模式下降10%
-
-    1.  ## Keepalive
+## 17.4 Keepalive
 
 > keepalive 起初是为 LVS 设计的，专门用来监控 lvs 各个服务节点的状态，后来加入了 vrrp 的功能，因此除了 lvs，也可以作为其他服务（nginx，haproxy）的高可用软件。VRRP 是 virtual router redundancy protocal（虚拟路由器冗余协议）的缩写。VRRP 的出现就是为了解决静态路由出现的单点故障，它能够保证网络可以不间断的稳定的运行。所以 keepalive 一方面具有 LVS cluster node healthcheck 功能，另一方面也具有 LVS director failover。
 
-## Nginx 反向代理负载均衡
+## 17.5 Nginx 反向代理负载均衡
 
-> 普通的负载均衡软件，如 LVS，其实现的功能只是对请求数据包的转发、传递，从负载均衡下的节点服务器来看，接收到的请求还是来自访问负载均衡器的客户端的真实用户；而反向代理就不一
+> 普通的负载均衡软件，如 LVS，其实现的功能只是对请求数据包的转发、传递，从负载均衡下的节点服务器来看，接收到的请求还是来自访问负载均衡器的客户端的真实用户；而反向代理就不一样了，反向代理服务器在接收访问用户请求后，会代理用户重新发起请求代理下的节点服务器，最后把数据返回给客户端用户。在节点服务器看来，访问的节点服务器的客户端用户就是反向代理服务器，而非真实的网站访问用户。
 >
-> 样了，反向代理服务器在接收访问用户请求后，会代理用户重新发起请求代理下的节点服务器，最后把数据返回给客户端用户。在节点服务器看来，访问的节点服务器的客户端用户就是反向代理服务器，而非真实的网站访问用户。
 
-### upstream_module 和健康检测
+### 17.5.1 upstream_module 和健康检测
 
 > ngx_http_upstream_module 是负载均衡模块，可以实现网站的负载均衡功能即节点的健康检查，upstream 模块允许Nginx 定义一组或多组节点服务器组，使用时可通过 proxy_pass 代理方式把网站的请求发送到事先定义好的对应 Upstream 组的名字上。
+>
+> ![image-20220713115201087](Java核心知识点.assets/image-20220713115201087.png)
+>
+> ```sh
+> upstream lvsServer{
+> server 191.168.1.11 weight=5 ;
+> server 191.168.1.22:82;
+> server example.com:8080 max_fails=2 fail_timeout=10s backup;
+> #域名的话需要解析的哦，内网记得 hosts
+> }
+> ```
 
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|> **upstream 模块**|> **参数说明**|
-|> ||
-|> **内参数**||
-+=====================+=================================================================================================================================================================================================================================+
-| weight |服务器权重|
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| max_fails | Nginx 尝试连接后端主机失败的此时，这是值是配合 proxy_next_upstream、|
-|||
-|| fastcgi_next_upstream 和 memcached_next_upstream 这三个参数来使用的。当 Nginx接收后端服务器返回这三个参数定义的状态码时，会将这个请求转发给正常工作的的后端服务器。如404、503、503,max_files=1 |
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| fail_timeout | max_fails 和 fail_timeout 一般会关联使用，如果某台 server 在 fail_timeout 时间内出现了|
-|||
-|| max_fails 次连接失败，那么 Nginx 会认为其已经挂掉，从而在 fail_timeout 时间内不再去请求它，fail_timeout 默认是10s，max_fails 默认是1，即默认情况只要是发生错误就认为服务器挂了，如果将 max_fails 设置为0，则表示取消这项检查|
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| backup |表示当前 server 是备用服务器，只有其它非 backup 后端服务器都挂掉了或很忙才会分配请|
-|||
-||求给它|
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| down |标志服务器永远不可用，可配合 ip_hash 使用|
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-### 18.1.5.1. proxy_pass 请求转发
+
+### 17.5.2. proxy_pass 请求转发
 
 > proxy_pass 指令属于 ngx_http_proxy_module 模块，此模块可以将请求转发到另一台服务器，在实际的反向代理工作中，会通过 location 功能匹配指定的 URI，然后把接收到服务匹配 URI 的请求通过 proyx_pass 抛给定义好的 upstream 节点池。
+>
+> ```sh
+> location /download/ {
+>   proxy_pass http://download/vedio/;
+> } 
+> #这是前端代理节点的设置
+> #交给后端 upstream 为 download 的节点
+> ```
+>
+> ![image-20220713115444272](Java核心知识点.assets/image-20220713115444272.png)
 
-+----------------------------------------+----------------------------------------------------------+
-|\#交给后端 upstream 为 download 的节点||
-+========================================+==========================================================+
-|> **proxy 模块参数**|> **说明**|
-+----------------------------------------+----------------------------------------------------------+
-| proxy_next_upstream |什么情况下将请求传递到下一个 upstream |
-+----------------------------------------+----------------------------------------------------------+
-| proxy_limite_rate |限制从后端服务器读取响应的速率|
-+----------------------------------------+----------------------------------------------------------+
-| proyx_set_header |设置 http 请求 header 传给后端服务器节点，如：可实现让代|
-|||
-||理后端的服务器节点获取访问客户端的这是 ip |
-+----------------------------------------+----------------------------------------------------------+
-| client_body_buffer_size |客户端请求主体缓冲区大小|
-+----------------------------------------+----------------------------------------------------------+
-| proxy_connect_timeout |代理与后端节点服务器连接的超时时间|
-+----------------------------------------+----------------------------------------------------------+
-| proxy_send_timeout |后端节点数据回传的超时时间|
-+----------------------------------------+----------------------------------------------------------+
-| proxy_read_timeout |设置Nginx 从代理的后端服务器获取信息的时间，表示连接成|
-|||
-||功建立后，Nginx 等待后端服务器的响应时间|
-+----------------------------------------+----------------------------------------------------------+
-| proxy_buffer_size |设置缓冲区大小|
-+----------------------------------------+----------------------------------------------------------+
-| proxy_buffers |设置缓冲区的数量和大小|
-+----------------------------------------+----------------------------------------------------------+
-| proyx_busy_buffers_size |用于设置系统很忙时可以使用的 proxy_buffers 大小，推荐为|
-|||
-|| proxy_buffers\*2 |
-+----------------------------------------+----------------------------------------------------------+
-| proxy_temp_file_write_size |指定 proxy 缓存临时文件的大小|
-+----------------------------------------+----------------------------------------------------------+
+## 17.6 HAProxy
 
-## HAProxy
+# 18.数据库
 
-# 19.数据库
+## 18.1 存储引擎
 
-1.  ## 存储引擎
-
-    1.  ### 概念
+### 18.1.1 概念
 
 > [数据库](http://lib.csdn.net/base/mysql)存储引擎是数据库底层软件组织，数据库管理系统（DBMS）使用数据引擎进行创建、查询、更新和删除数据。不同的存储引擎提供不同的存储机制、索引技巧、锁定水平等功能，使用不同的存储引擎，还可以获得特定的功能。现在许多不同的数据库管理系统都支持多种不同的数据引擎。存储引擎主要有：1. MyIsam ,2. InnoDB,3. Memory,4. Archive,5. Federated 。
 
