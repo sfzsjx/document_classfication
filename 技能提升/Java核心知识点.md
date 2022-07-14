@@ -5968,18 +5968,16 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 ## 21.2 队列（queue）
 
 > 队列是一种特殊的[线性表](https://baike.baidu.com/item/%E7%BA%BF%E6%80%A7%E8%A1%A8)，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。
-
-![](media/image148.jpeg){width="4.064204943132109in" height="0.8499989063867016in"}
-
-## 链表（Link）
-
-> 链表是一种数据结构，和数组同级。比如，Java 中我们使用的 ArrayList，其实现原理是数组。而
 >
-> LinkedList 的实现原理就是链表了。链表在进行循环遍历时效率不高，但是插入和删除时优势明显。
->
-> ![](media/image149.jpeg){width="5.684700349956255in" height="1.8854166666666667in"}
+> ![image-20220714100004365](Java核心知识点.assets/image-20220714100004365.png)
 
-## 散列表（Hash Table）
+## 21.3 链表（Link）
+
+> 链表是一种数据结构，和数组同级。比如，Java 中我们使用的 ArrayList，其实现原理是数组。而LinkedList 的实现原理就是链表了。链表在进行循环遍历时效率不高，但是插入和删除时优势明显。
+>
+> ![image-20220714100037602](Java核心知识点.assets/image-20220714100037602.png)
+
+## 21.4 散列表（Hash Table）
 
 > 散列表（Hash table，也叫哈希表）是一种查找算法，与链表、树等算法不同的是，散列表算法在查找时不需要进行一系列和关键字（关键字是数据元素中某个数据项的值，用以标识一个数据元素）的比较操作。
 >
@@ -5989,7 +5987,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > （1）直接定址法：取关键字或关键字的某个线性函数值为散列地址。
 >
-> 即：h(key)= key 或 h(key)= a \* key + b，其中 a 和b 为常数。
+> ​	即：h(key)= key 或 h(key)= a \* key + b，其中 a 和b 为常数。
 >
 > （2）数字分析法
 >
@@ -5997,43 +5995,39 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > （4）折叠法：将关键字分割成位数相同的几部分，然后取这几部分的叠加和作为散列地址。
 >
-> （5）除留余数法：取关键字被某个不大于散列表表长 m 的数 p 除后所得的余数为散列地址，即：h(key)= key MOD p p ≤ m
+> （5）除留余数法：取关键字被某个不大于散列表表长 m 的数 p 除后所得的余数为散列地址，即：h(key)= key MOD p (p ≤ m)
 >
 > （6）随机数法：选择一个随机函数，取关键字的随机函数值为它的散列地址，即：h(key)= random(key)
 
-## 排序二叉树
+## 21.5 排序二叉树
 
 > 首先如果普通二叉树每个节点满足：左子树所有节点值小于它的根节点值，且右子树所有节点值大于它的根节点值，则这样的二叉树就是排序二叉树。
 
-### 插入操作
+### 21.5.1 插入操作
 
-> 首先要从根节点开始往下找到自己要插入的位置（即新节点的父节点）；具体流程是：新节点与当前节点比较，如果相同则表示已经存在且不能再重复插入；如果小于当前节点，则到左子树中
+> 首先要从根节点开始往下找到自己要插入的位置（即新节点的父节点）；具体流程是：新节点与当前节点比较，如果相同则表示已经存在且不能再重复插入；如果小于当前节点，则到左子树中寻找，如果左子树为空则当前节点为要找的父节点，新节点插入到当前节点的左子树即可；如果大于当前节点，则到右子树中寻找，如果右子树为空则当前节点为要找的父节点，新节点插入到当前节点的右子树即可。
 >
-> 寻找，如果左子树为空则当前节点为要找的父节点，新节点插入到当前节点的左子树即可；如果大于当前节点，则到右子树中寻找，如果右子树为空则当前节点为要找的父节点，新节点插入到当前节点的右子树即可。
+> ![image-20220714100217984](Java核心知识点.assets/image-20220714100217984.png)
 
-![](media/image150.jpeg){width="4.674982502187227in" height="4.65625in"}
-
-### 删除操作
+### 21.5.2 删除操作
 
 > 删除操作主要分为三种情况，即要删除的节点无子节点，要删除的节点只有一个子节点，要删除的节点有两个子节点。
+>
+> 1.  对于要删除的节点无子节点可以直接删除，即让其父节点将该子节点置空即可。
+> 2.  对于要删除的节点只有一个子节点，则替换要删除的节点为其子节点。
+> 3.  对于要删除的节点有两个子节点，则首先找该节点的替换节点（即右子树中最小的节点），接着替换要删除的节点为替换节点，然后删除替换节点。
+>
+> ![image-20220714100310620](Java核心知识点.assets/image-20220714100310620.png)
 
-1.  对于要删除的节点无子节点可以直接删除，即让其父节点将该子节点置空即可。
-
-2.  对于要删除的节点只有一个子节点，则替换要删除的节点为其子节点。
-
-3.  对于要删除的节点有两个子节点，则首先找该节点的替换节点（即右子树中最小的节点），接着替换要删除的节点为替换节点，然后删除替换节点。
-
-> ![](media/image151.jpeg){width="4.795317147856518in" height="3.9375in"}
-
-### 查询操作
+### 21.5.3 查询操作
 
 > 查找操作的主要流程为：先和根节点比较，如果相同就返回，如果小于根节点则到左子树中递归查找，如果大于根节点则到右子树中递归查找。因此在排序二叉树中可以很容易获取最大（最右最深子节点）和最小（最左最深子节点）值。
 
-## 红黑树
+## 21.6 红黑树
 
 > R-B Tree，全称是 Red-Black Tree，又称为"红黑树"，它一种特殊的二叉查找树。红黑树的每个节点上都有存储位表示节点的颜色，可以是红(Red)或黑(Black)。
 
-### 22.1.6.1.红黑树的特性
+### 21.6.1 红黑树的特性
 
 > （1）每个节点或者是黑色，或者是红色。
 >
@@ -6045,23 +6039,61 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > （5）从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑节点。
 
-### 22.1.6.1.左旋
+### 21.6.2 左旋
 
 > 对 x 进行左旋，意味着，将"x 的右孩子"设为"x 的父亲节点"；即，将 x 变成了一个左节点(x成了为 z 的左孩子)！。因此，左旋中的"左"，意味着"被旋转的节点将变成一个左节点"。
 >
-> ![](media/image152.jpeg){width="3.5542869641294836in" height="1.9439577865266842in"}
+> ![image-20220714100410298](Java核心知识点.assets/image-20220714100410298.png)
 >
-> ![](media/image153.jpeg){width="6.296329833770779in" height="1.5618744531933508in"}
+> ```sh
+> LEFT-ROTATE(T, x)
+> y ← right[x] // 前提：这里假设 x 的右孩子为 y。下面开始正式操作
+> right[x] ← left[y] // 将 “y 的左孩子” 设为 “x 的右孩子”，即 将β设为 x 的右孩子
+> p[left[y]] ← x // 将 “x” 设为 “y 的左孩子的父亲”，即 将β的父亲设为 x
+> p[y] ← p[x] // 将 “x 的父亲” 设为 “y 的父亲”
+> if p[x] = nil[T]
+> then root[T] ← y // 情况 1：如果 “x 的父亲” 是空节点，则将 y 设为根节点
+> else if x = left[p[x]]
+> 	then left[p[x]] ← y // 情况 2：如果 x 是它父节点的左孩子，则将 y 设为“x 的父节点的左孩子”
+> 	else right[p[x]] ← y // 情况 3： (x 是它父节点的右孩子) 将 y 设为“x 的父节点的右孩子”
+> left[y] ← x // 将 “x” 设为 “y 的左孩子”
+> p[x] ← y // 将 “x 的父节点” 设为 “y”
+> ```
+>
+> ![image-20220714100514617](Java核心知识点.assets/image-20220714100514617.png)
 
-### 22.1.6.1.右旋
+### 21.6.3 右旋
 
 > 对 x 进行右旋，意味着，将"x 的左孩子"设为"x 的父亲节点"；即，将 x 变成了一个右节点(x成了为 y 的右孩子)！因此，右旋中的"右"，意味着"被旋转的节点将变成一个右节点"。
 >
-> ![](media/image154.jpeg)
+> ![image-20220714100549949](Java核心知识点.assets/image-20220714100549949.png)
+>
+> ```sh
+> RIGHT-ROTATE(T, y)
+> x ← left[y] // 前提：这里假设 y 的左孩子为 x。下面开始正式操作
+> left[y] ← right[x] // 将 “x 的右孩子” 设为 “y 的左孩子”，即 将β设为 y 的左孩子
+> p[right[x]] ← y // 将 “y” 设为 “x 的右孩子的父亲”，即 将β的父亲设为 y
+> p[x] ← p[y] // 将 “y 的父亲” 设为 “x 的父亲”
+> if p[y] = nil[T]
+> then root[T] ← x // 情况 1：如果 “y 的父亲” 是空节点，则将 x 设为根节点
+> else if y = right[p[y]]
+> 	then right[p[y]] ← x // 情况 2：如果 y 是它父节点的右孩子，则将 x 设为“y 的父节点的左孩子”
+> 	else left[p[y]] ← x // 情况 3： (y 是它父节点的左孩子) 将 x 设为“y 的父节点的左孩子”
+> right[x] ← y // 将 “y” 设为 “x 的右孩子”
+> p[y] ← x // 将 “y 的父节点” 设为 “x”
+> ```
+>
+> 
 
-### 添加
 
-> 第一步: 将红黑树当作一颗二叉查找树，将节点插入。第二步：将插入的节点着色为\"红色\"。
+
+### 21.6.4 添加
+
+> 第一步: 将红黑树当作一颗二叉查找树，将节点插入。
+>
+> 第二步：将插入的节点着色为\"红色\"。
+>
+> 
 >
 > 根据被插入节点的父节点的情况，可以将\"当节点 z 被着色为红色节点，并插入二叉树\"划分为三种情况来处理。
 >
@@ -6069,15 +6101,17 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ②情况说明：被插入的节点的父节点是黑色。
 >
+> 
+>
 > 处理方法：什么也不需要做。节点被插入后，仍然是红黑树。
 >
 > ③情况说明：被插入的节点的父节点是红色。这种情况下，被插入节点是一定存在非空祖父节点的；进一步的讲，被插入节点也一定存在叔叔节点(即使叔叔节点为空，我们也视之为存在，空节点本身就是黑色节点)。理解这点之后，我们依据\"叔叔节点的情况\"，将这种情况进一步划分为3种情况(Case)。
-
-![](media/image155.png){width="6.2113418635170605in" height="1.8859372265966754in"}
-
+>
+> ![image-20220714100712063](Java核心知识点.assets/image-20220714100712063.png)
+>
 > 第三步: 通过一系列的旋转或着色等操作，使之重新成为一颗红黑树。
 
-### 删除
+### 21.6.5 删除
 
 > 第一步：将红黑树当作一颗二叉查找树，将节点删除。
 >
@@ -6087,9 +6121,7 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > ②被删除节点只有一个儿子。那么，直接删除该节点，并用该节点的唯一子节点顶替它的位置。
 >
-> ③被删除节点有两个儿子。那么，先找出它的后继节点；然后把"它的后继节点的内容"复制给
->
-> "该节点的内容"；之后，删除"它的后继节点"。
+> ③被删除节点有两个儿子。那么，先找出它的后继节点；然后把"它的后继节点的内容"复制给"该节点的内容"；之后，删除"它的后继节点"。
 >
 > 第二步：通过\"旋转和重新着色\"等一系列来修正该树，使之重新成为一棵红黑树。
 >
@@ -6109,37 +6141,33 @@ Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Ja
 >
 > 处理方法：这种情况又可以划分为4 种子情况。这4 种子情况如下表所示：
 >
-> ![](media/image156.png){width="6.253108048993876in" height="2.8335411198600173in"}
+> ![image-20220714100807846](Java核心知识点.assets/image-20220714100807846.png)
 >
 > 参考：[<span class="underline">https://www.jianshu.com/p/038585421b73</span>](https://www.jianshu.com/p/038585421b73)
 >
 > 代码实现：[<span class="underline">https://www.cnblogs.com/skywang12345/p/3624343.html</span>](https://www.cnblogs.com/skywang12345/p/3624343.html)
 
-## B-TREE
+## 21.7 B-TREE
 
 > B-tree 又叫平衡多路查找树。一棵 m 阶的 B-tree (m 叉树)的特性如下（其中 ceil(x)是一个取上限的函数）：
+>
+> 1.  树中每个结点至多有 m 个孩子；
+>
+> 2.  除根结点和叶子结点外，其它每个结点至少有有 ceil(m /2)个孩子；
+>
+> 3.  若根结点不是叶子结点，则至少有2 个孩子（特殊情况：没有孩子的根结点，即根结点为叶子结点，整棵树只有一个根节点）；
+>
+> 4.  所有叶子结点都出现在同一层，叶子结点不包含任何关键字信息(可以看做是外部结点或查询失败的结点，实际上这些结点不存在，指向这些结点的指针都为 null)；
+>
+> 5.  每个非终端结点中包含有 n 个关键字信息：(n，P0，K1，P1，K2，P2，\...\...，Kn，Pn)。其中：
+>
+> ​    a) Ki (i=1\...n)为关键字，且关键字按顺序排序 K(i-1)\< Ki。
+>
+> ​    b) Pi 为指向子树根的接点，且指针 P(i-1)指向子树种所有结点的关键字均小于 Ki，但都大于 K(i-1)。
+>
+> ​    c)关键字的个数 n 必须满足： ceil(m /2)-1 \<= n \<= m-1。
 
-1.  树中每个结点至多有 m 个孩子；
-
-2.  除根结点和叶子结点外，其它每个结点至少有有 ceil(m /2)个孩子；
-
-3.  若根结点不是叶子结点，则至少有2 个孩子（特殊情况：没有孩子的根结点，即根结点为叶子结点，整棵树只有一个根节点）；
-
-4.  所有叶子结点都出现在同一层，叶子结点不包含任何关键字信息(可以看做是外部结点或查询失败的结点，实际上这些结点不存在，指向这些结点的指针都为 null)；
-
-5.  每个非终端结点中包含有 n 个关键字信息：(n，P0，K1，P1，K2，P2，\...\...，Kn，Pn)。其中：
-
-&nbsp;
-
-a) Ki (i=1\...n)为关键字，且关键字按顺序排序 K(i-1)\< Ki。
-
-b) Pi 为指向子树根的接点，且指针 P(i-1)指向子树种所有结点的关键字均小于 Ki，但都大于 K(i-
-
-> 1)。
-
-c)关键字的个数 n 必须满足： ceil(m /2)-1 \<= n \<= m-1。
-
-> ![](media/image157.jpeg){width="6.2440955818022745in" height="3.0in"}
+> ![image-20220714100922942](Java核心知识点.assets/image-20220714100922942.png)
 >
 > 一棵 m 阶的 B+tree 和 m 阶的 B-tree 的差异在于：
 >
@@ -6148,66 +6176,69 @@ c)关键字的个数 n 必须满足： ceil(m /2)-1 \<= n \<= m-1。
 > 2.所有的叶子结点中包含了全部关键字的信息，及指向含有这些关键字记录的指针，且叶子结点本身依关键字的大小自小而大的顺序链接。(B-tree 的叶子节点并没有包括全部需要查找的信息)
 >
 > 3.所有的非终端结点可以看成是索引部分，结点中仅含有其子树根结点中最大（或最小）关键字。(B-tree 的非终节点也包含需要查找的有效信息)
-
-![](media/image158.jpeg){width="5.923160542432196in" height="3.59375in"}
-
+>
+> ![image-20220714100938277](Java核心知识点.assets/image-20220714100938277.png)
+>
 > 参考：[<span class="underline">https://www.jianshu.com/p/1ed61b4cca12</span>](https://www.jianshu.com/p/1ed61b4cca12)
 
-## 位图
+## 21.8 位图
 
 > 位图的原理就是用一个 bit 来标识一个数字是否存在，采用一个 bit 来存储一个数据，所以这样可以大大的节省空间。 bitmap 是很常用的数据结构，比如用于 Bloom Filter 中；用于无重复整数的排序等等。bitmap 通常基于数组来实现，数组中每个元素可以看成是一系列二进制数，所有元素组成更大的二进制集合。
 >
 > [<span class="underline">https://www.cnblogs.com/polly333/p/4760275.html</span>](https://www.cnblogs.com/polly333/p/4760275.html)
 
-23. # 加密算法
+# 22. 加密算法
 
-    1.  ## AES
+## 22.1 AES
 
 > 高级加密标准(AES,Advanced Encryption Standard)为最常见的对称加密算法(微信小程序加密传输就是用这个加密算法的)。对称加密算法也就是加密和解密用相同的密钥，具体的加密流程如下图：
+>
+> ![image-20220714101028775](Java核心知识点.assets/image-20220714101028775.png)
 
-![](media/image159.jpeg){width="6.232893700787401in" height="2.5289577865266843in"}
 
-## RSA
+
+## 22.2 RSA
 
 > RSA 加密算法是一种典型的非对称加密算法，它基于大数的因式分解数学难题，它也是应用最广泛的非对称加密算法。
 >
-> ![](media/image160.jpeg){width="6.2509076990376204in" height="3.2821872265966756in"}非对称加密是通过两个密钥（公钥-私钥）来实现对数据的加密和解密的。公钥用于加密，私钥用于解密。
+> 非对称加密是通过两个密钥（公钥-私钥）来实现对数据的加密和解密的。公钥用于加密，私钥用于解密。
 >
-> ![](media/image161.jpeg){width="6.25128280839895in" height="4.1672911198600175in"}
+> ![image-20220714101101087](Java核心知识点.assets/image-20220714101101087.png)
+>
+> ![image-20220714101117980](Java核心知识点.assets/image-20220714101117980.png)
 
-## CRC
+## 22.3 CRC
 
 > 循环冗余校验(Cyclic Redundancy Check, CRC)是一种根据网络数据包或电脑文件等数据产生简短固定位数校验码的一种散列函数，主要用来检测或校验数据传输或者保存后可能出现的错误。它是利用除法及余数的原理来作错误侦测的。
 
-## MD5
+## 22.4 MD5
 
-> MD5 常常作为文件的签名出现，我们在下载文件的时候，常常会看到文件页面上附带一个扩展名为.MD5 的文本或者一行字符，这行字符就是就是把整个文件当作原数据通过 MD5 计算后的值，我们下载文件后，可以用检查文件 MD5 信息的软件对下载到的文件在进行一次计算。两次结果对比就可以确保下载到文件的准确性。另一种常见用途就是网站敏感信息加密，比如用户名密码，支付签名等等。随着 https 技术的普及，现在的网站广泛采用前台明文传输到后台，MD5 加密
+> MD5 常常作为文件的签名出现，我们在下载文件的时候，常常会看到文件页面上附带一个扩展名为.MD5 的文本或者一行字符，这行字符就是就是把整个文件当作原数据通过 MD5 计算后的值，我们下载文件后，可以用检查文件 MD5 信息的软件对下载到的文件在进行一次计算。两次结果对比就可以确保下载到文件的准确性。另一种常见用途就是网站敏感信息加密，比如用户名密码，支付签名等等。随着 https 技术的普及，现在的网站广泛采用前台明文传输到后台，MD5 加密（使用偏移量）的方式保护敏感数据保护站点和数据安全。
 >
-> （使用偏移量）的方式保护敏感数据保护站点和数据安全。
 
-24. # 分布式缓存
+# 23. 分布式缓存
 
-    1.  ## 缓存雪崩
+## 23.1 缓存雪崩
 
 > 缓存雪崩我们可以简单的理解为：由于原有缓存失效，新缓存未到期间所有原本应该访问缓存的请求都去查询数据库了，而对数据库 CPU 和内存造成巨大压力，严重的会造成数据库宕机。从而形成一系列连锁反应，造成整个系统崩溃。一般有三种处理办法：
+>
+> 1.  一般并发量不是特别多的时候，使用最多的解决方案是加锁排队。
+>
+> 2.  给每一个缓存数据增加相应的缓存标记，记录缓存的是否失效，如果缓存标记失效，则更新数据缓存。
+>
+> 3.  为 key 设置不同的缓存失效时间。
 
-1.  一般并发量不是特别多的时候，使用最多的解决方案是加锁排队。
-
-2.  给每一个缓存数据增加相应的缓存标记，记录缓存的是否失效，如果缓存标记失效，则更新数据缓存。
-
-3.  为 key 设置不同的缓存失效时间。
-
-    1.  ## 缓存穿透
+## 23.2 缓存穿透
 
 > 缓存穿透是指用户查询数据，在数据库没有，自然在缓存中也不会有。这样就导致用户查询的时候，在缓存中找不到，每次都要去数据库再查询一遍，然后返回空（相当于进行了两次无用的查询）。这样请求就绕过缓存直接查数据库，这也是经常提的缓存命中率问题。
 >
 > 有很多种方法可以有效地解决缓存穿透问题，最常见的则是采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的 bitmap 中，一个一定不存在的数据会被这个 bitmap 拦截掉，从而避免了对底层存储系统的查询压力。另外也有一个更为简单粗暴的方法，如果一个查询返回的数据为空（不管是数据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。通过这个直接设置的默认值存放到缓存，这样第二次到缓冲中获取就有值了，而不会继续访问数据库。
 
-## 缓存预热
+## 23.3 缓存预热
 
 > 缓存预热就是系统上线后，将相关的缓存数据直接加载到缓存系统。这样就可以避免在用户请求的时候，先查询数据库，然后再将数据缓存的问题！用户直接查询事先被预热的缓存数据！
 
-## 缓存更新
+## 23.4 缓存更新
 
 > 缓存更新除了缓存服务器自带的缓存失效策略之外（Redis 默认的有6 中策略可供选择），我们还可以根据具体的业务需求进行自定义的缓存淘汰，常见的策略有两种：
 >
@@ -6215,625 +6246,496 @@ c)关键字的个数 n 必须满足： ceil(m /2)-1 \<= n \<= m-1。
 >
 > （2）当有用户请求过来时，再判断这个请求所用到的缓存是否过期，过期的话就去底层系统得到新数据并更新缓存。
 
-## 缓存降级
+## 23.5 缓存降级
 
-> 当访问量剧增、服务出现问题（如响应时间慢或不响应）或非核心服务影响到核心流程的性能时，仍然需要保证服务还是可用的，即使是有损服务。系统可以根据一些关键数据进行自动降级，也可以配置开关实现人工降级。降级的最终目的是保证核心服务可用，即使是有损的。而且有些服务是无法降级的
+> 当访问量剧增、服务出现问题（如响应时间慢或不响应）或非核心服务影响到核心流程的性能时，仍然需要保证服务还是可用的，即使是有损服务。系统可以根据一些关键数据进行自动降级，也可以配置开关实现人工降级。降级的最终目的是保证核心服务可用，即使是有损的。而且有些服务是无法降级的（如加入购物车、结算）。
 >
-> （如加入购物车、结算）。
 
-25. # <span class="underline">Hadoop</span> 
+# 24. Hadoop
 
-    1.  ## 概念
+## 24.1 概念
 
-> 就是一个大数据解决方案。它提供了一套分布式系统基础架构。核心内容包含 hdfs 和
->
-> mapreduce。hadoop2.0 以后引入yarn.
+> 就是一个大数据解决方案。它提供了一套分布式系统基础架构。核心内容包含 hdfs 和mapreduce。hadoop2.0 以后引入yarn。
 >
 > hdfs 是提供数据存储的，mapreduce 是方便数据计算的。
+>
+> 1.  hdfs 又对应 namenode 和 datanode. namenode 负责保存元数据的基本信息，datanode 直接存放数据本身；
+>
+> 2.  mapreduce 对应 jobtracker 和 tasktracker. jobtracker 负责分发任务，tasktracker 负责执行具体任务；
+>
+> 3.  对应到 master/slave 架构，namenode 和jobtracker 就应该对应到 master, datanode和 tasktracker 就应该对应到slave.
 
-1.  hdfs 又对应 namenode 和 datanode. namenode 负责保存元数据的基本信息，
+## 24.2 HDFS
 
-> datanode 直接存放数据本身；
-
-2.  mapreduce 对应 jobtracker 和 tasktracker. jobtracker 负责分发任务，tasktracker 负责执行具体任务；
-
-3.  对应到 master/slave 架构，namenode 和jobtracker 就应该对应到 master, datanode
-
-> 和 tasktracker 就应该对应到slave.
-
-1.  ## HDFS
-
-    1.  ### Client
+### 24.2.1 Client
 
 > Client（代表用户）通过与 NameNode 和 DataNode 交互访问 HDFS 中的文件。 Client 提供了一个类似 POSIX 的文件系统接口供用户调用。
 
-### NameNode
+### 24.2.2 NameNode
 
 > 整个 Hadoop 集群中只有一个 NameNode。它是整个系统的"总管"，负责管理 HDFS 的目录树和相关的文件元数据信息。这些信息是以" fsimage"（ HDFS 元数据镜像文件）和" editlog"（HDFS 文件改动日志）两个文件形式存放在本地磁盘，当 HDFS 重启时重新构造出来的。此外， NameNode 还负责监控各个DataNode 的健康状态，一旦发现某个 DataNode 宕掉，则将该 DataNode 移出 HDFS 并重新备份其上面的数据。
 
-###### Secondary NameNode
+### 24.2.3 Secondary NameNode
 
-> Secondary NameNode 最重要的任务并不是为 NameNode 元数据进行热备份，而是定期合并
+> Secondary NameNode 最重要的任务并不是为 NameNode 元数据进行热备份，而是定期合并fsimage 和 edits 日志，并传输给 NameNode。这里需要注意的是，为了减小 NameNode 压力， NameNode 自己并不会合并 fsimage 和 edits，并将文件存储到磁盘上，而是交由 Secondary NameNode 完成。
 >
-> fsimage 和 edits 日志，并传输给 NameNode。这里需要注意的是，为了减小 NameNode 压力， NameNode 自己并不会合并 fsimage 和 edits，并将文件存储到磁盘上，而是交由 Secondary NameNode 完成。
 
-###### DataNode
+### 24.2.4 DataNode
 
-> 一般而言，每个 Slave 节点上安装一个 DataNode，它负责实际的数据存储，并将数据信息定期汇报给 NameNode。 DataNode 以固定大小的 block 为基本单位组织文件内容，默认情况下
+> 一般而言，每个 Slave 节点上安装一个 DataNode，它负责实际的数据存储，并将数据信息定期汇报给 NameNode。 DataNode 以固定大小的 block 为基本单位组织文件内容，默认情况下block 大小为64MB。当用户上传一个大的文件到 HDFS 上时，该文件会被切分成若干个 block，分别存储到不同的 DataNode ；同时，为了保证数据可靠，会将同一个 block 以流水线方式写到若干个（默认是3，该参数可配置）不同的 DataNode 上。这种文件切割后存储的过程是对用户透明的。
 >
-> block 大小为64MB。当用户上传一个大的文件到 HDFS 上时，该文件会被切分成若干个 block，分别存储到不同的 DataNode ；同时，为了保证数据可靠，会将同一个 block 以流水线方式写到
->
-> 若干个（默认是3，该参数可配置）不同的 DataNode 上。这种文件切割后存储的过程是对用户透明的。
 
-## MapReduce
+## 24.3 MapReduce
 
 > 同 HDFS 一样，Hadoop MapReduce 也采用了 Master/Slave（M/S）架构，具体如图所示。它主要由以下几个组件组成：Client、JobTracker、TaskTracker 和 Task。下面分别对这几个组件进行介绍。
-
-![](media/image162.jpeg){width="6.296410761154855in" height="4.17375in"}
-
-###### Client
-
-> 用户编写的 MapReduce 程序通过 Client 提交到 JobTracker 端；同时，用户可通过 Client 提供的一些接口查看作业运行状态。在 Hadoop 内部用"作业"（Job）表示 MapReduce 程序。一个 MapReduce 程序可对应若干个作业，而每个作业会被分解成若干个 Map/Reduce 任务
 >
-> （Task）。
+> ![image-20220714102825497](Java核心知识点.assets/image-20220714102825497.png)
 
-###### JobTracker
+### 24.3.1 Client
+
+> 用户编写的 MapReduce 程序通过 Client 提交到 JobTracker 端；同时，用户可通过 Client 提供的一些接口查看作业运行状态。在 Hadoop 内部用"作业"（Job）表示 MapReduce 程序。一个 MapReduce 程序可对应若干个作业，而每个作业会被分解成若干个 Map/Reduce 任务（Task）。
+>
+
+### 24.3.2 JobTracker
 
 > JobTracker 主要负责资源监控和作业调度。JobTracker 监控所有 TaskTracker 与作业的健康状况，一旦发现失败情况后，其会将相应的任务转移到其他节点；同时 JobTracker 会跟踪任务的执行进度、资源使用量等信息，并将这些信息告诉任务调度器，而调度器会在资源出现空闲时，选择合适的任务使用这些资源。在 Hadoop 中，任务调度器是一个可插拔的模块，用户可以根据自己的需要设计相应的调度器。
 
-###### TaskTracker
+### 24.3.3 TaskTracker
 
-> TaskTracker 会周期性地通过 Heartbeat 将本节点上资源的使用情况和任务的运行进度汇报给
+> TaskTracker 会周期性地通过 Heartbeat 将本节点上资源的使用情况和任务的运行进度汇报给JobTracker，同时接收 JobTracker 发送过来的命令并执行相应的操作（如启动新任务、杀死任务等）。TaskTracker 使用"slot"等量划分本节点上的资源量。"slot"代表计算资源（CPU、内存等）。一个 Task 获取到一个 slot 后才有机会运行，而 Hadoop 调度器的作用就是将各个TaskTracker 上的空闲 slot 分配给 Task 使用。 slot 分为 Map slot 和 Reduce slot 两种，分别供MapTask 和 Reduce Task 使用。 TaskTracker 通过 slot 数目（可配置参数）限定 Task 的并发度。
 >
-> JobTracker，同时接收 JobTracker 发送过来的命令并执行相应的操作（如启动新任务、杀死任务等）。TaskTracker 使用"slot"等量划分本节点上的资源量。"slot"代表计算资源（CPU、内存等）。一个 Task 获取到一个 slot 后才有机会运行，而 Hadoop 调度器的作用就是将各个
->
-> TaskTracker 上的空闲 slot 分配给 Task 使用。 slot 分为 Map slot 和 Reduce slot 两种，分别供
->
-> MapTask 和 Reduce Task 使用。 TaskTracker 通过 slot 数目（可配置参数）限定 Task 的并发度。
 
-###### Task
+### 24.3.4 Task
 
-> Task 分为Map Task 和Reduce Task 两种，均由TaskTracker 启动。 HDFS 以固定大小的block为基本单位存储数据，而对于 MapReduce 而言，其处理单位是 split。split 与 block 的对应关系如图所示。 split 是一个逻辑概念，它只包含一些元数据信息，比如数据起始位置、数据长度、数据所在节点等。它的划分方法完全由用户自己决定。但需要注意的是，split 的多少决定了 Map
+> Task 分为Map Task 和Reduce Task 两种，均由TaskTracker 启动。 HDFS 以固定大小的block为基本单位存储数据，而对于 MapReduce 而言，其处理单位是 split。split 与 block 的对应关系如图所示。 split 是一个逻辑概念，它只包含一些元数据信息，比如数据起始位置、数据长度、数据所在节点等。它的划分方法完全由用户自己决定。但需要注意的是，split 的多少决定了 Map Task 的数目，因为每个 split 会交由一个 Map Task 处理。
 >
-> Task 的数目，因为每个 split 会交由一个 Map Task 处理。
+> Map Task 执行过程如图所示。由该图可知，Map Task 先将对应的 split 迭代解析成一个个key/value 对，依次调用用户自定义的 map()函数进行处理，最终将临时结果存放到本地磁盘上，其中临时数据被分成若干个 partition，每个 partition 将被一个 Reduce Task 处理。
 >
-> Map Task 执行过程如图所示。由该图可知，Map Task 先将对应的 split 迭代解析成一个个
->
-> key/value 对，依次调用用户自定义的 map()函数进行处理，最终将临时结果存放到本地磁盘上，其中临时数据被分成若干个 partition，每个 partition 将被一个 Reduce Task 处理。
+> ![image-20220714102938686](Java核心知识点.assets/image-20220714102938686.png)
 
-![](media/image163.jpeg){width="6.26458552055993in" height="2.0663538932633423in"}
 
-###### Reduce Task 执行过程
+
+### 2.4.3.5 Reduce Task 执行过程
 
 > 该过程分为三个阶段
-
-1.  从远程节点上读取 MapTask 中间结果（称为"Shuffle 阶段"）；
-
-2.  按照 key 对 key/value 对进行排序（称为" Sort 阶段"）；
-
-3.  依次读取\<key, value list\>，调用用户自定义的reduce()函数处理，并将最终结果存到HDFS
-
-> 上（称为" Reduce 阶段"）。
-
-## Hadoop MapReduce 作业的生命周期
-
-#######*1.*作业提交与初始化
-
-1.  用户提交作业后，首先由 JobClient 实例将作业相关信息，比如将程序 jar 包、作业配置文件、分片元信息文件等上传到分布式文件系统（一般为 HDFS）上，其中，分片元信息文件记录了每个输入分片的逻辑位置信息。然后 JobClient 通过 RPC 通知 JobTracker 。
-
-> JobTracker 收到新作业提交请求后，由作业调度模块对作业进行初始化：为作业创建一个
 >
-> JobInProgress 对象以跟踪作业运行状况，而 JobInProgress 则会为每个 Task 创建一个
+> 1.  从远程节点上读取 MapTask 中间结果（称为"Shuffle 阶段"）；
 >
-> TaskInProgress 对象以跟踪每个任务的运行状态， TaskInProgress 可能需要管理多个" Task 运行尝试"（称为" Task Attempt"）。
-
-#######*2.*任务调度与监控。
-
-2.  前面提到，任务调度和监控的功能均由 JobTracker 完成。TaskTracker 周期性地通过
-
-> Heartbeat 向 JobTracker 汇报本节点的资源使用情况，一旦出现空闲资源， JobTracker会按照一定的策略选择一个合适的任务使用该空闲资源，这由任务调度器完成。任务调度器是一个可插拔的独立模块，且为双层架构，即首先选择作业，然后从该作业中选择任务，其中，选择任务时需要重点考虑数据本地性。此外，JobTracker 跟踪作业的整个运行过程，并为作业的成功运行提供全方位的保障。首先，当 TaskTracker 或者 Task 失败时，转移计算任务；其次，当某个 Task 执行进度远落后于同一作业的其他 Task 时，为之启动一个相同
+> 2.  按照 key 对 key/value 对进行排序（称为" Sort 阶段"）；
 >
-> Task，并选取计算快的 Task 结果作为最终结果。
+> 3.  依次读取\<key, value list\>，调用用户自定义的reduce()函数处理，并将最终结果存到HDFS上（称为" Reduce 阶段"）。
 
-#######*3.*任务运行环境准备
+## 24.4 Hadoop MapReduce 作业的生命周期
 
-3.  运行环境准备包括 JVM 启动和资源隔离，均由TaskTracker 实现。 TaskTracker 为每个
-
-> Task 启动一个独立的 JVM 以避免不同 Task 在运行过程中相互影响；同时，TaskTracker 使用了操作系统进程实现资源隔离以防止 Task 滥用资源。
+> **1.作业提交与初始化**
 >
-> 846"***4.任务执行***
+> 1.  用户提交作业后，首先由 JobClient 实例将作业相关信息，比如将程序 jar 包、作业配置文件、分片元信息文件等上传到分布式文件系统（一般为 HDFS）上，其中，分片元信息文件记录了每个输入分片的逻辑位置信息。然后 JobClient 通过 RPC 通知 JobTracker 。JobTracker 收到新作业提交请求后，由作业调度模块对作业进行初始化：为作业创建一个JobInProgress 对象以跟踪作业运行状况，而 JobInProgress 则会为每个 Task 创建一个TaskInProgress 对象以跟踪每个任务的运行状态， TaskInProgress 可能需要管理多个" Task 运行尝试"（称为" Task Attempt"）。
+>
+> **2.任务调度与监控。**
+>
+> 2. 前面提到，任务调度和监控的功能均由 JobTracker 完成。TaskTracker 周期性地通过Heartbeat 向 JobTracker 汇报本节点的资源使用情况，一旦出现空闲资源， JobTracker会按照一定的策略选择一个合适的任务使用该空闲资源，这由任务调度器完成。任务调度器是一个可插拔的独立模块，且为双层架构，即首先选择作业，然后从该作业中选择任务，其中，选择任务时需要重点考虑数据本地性。此外，JobTracker 跟踪作业的整个运行过程，并为作业的成功运行提供全方位的保障。首先，当 TaskTracker 或者 Task 失败时，转移计算任务；其次，当某个 Task 执行进度远落后于同一作业的其他 Task 时，为之启动一个相同Task，并选取计算快的 Task 结果作为最终结果。
+>
+> 3.任务运行环境准备
+>
+> 3. 运行环境准备包括 JVM 启动和资源隔离，均由TaskTracker 实现。 TaskTracker 为每个Task 启动一个独立的 JVM 以避免不同 Task 在运行过程中相互影响；同时，TaskTracker 使用了操作系统进程实现资源隔离以防止 Task 滥用资源。
+>
+> **4.任务执行**
+>
+> 4. TaskTracker 为 Task 准备好运行环境后，便会启动 Task。在运行过程中，每个 Task 的最新进度首先由 Task 通过 RPC 汇报给 TaskTracker，再由 TaskTracker 汇报给 JobTracker。
+>
+> **5.作业完成。**
+>
+> 5. 待所有 Task 执行完毕后，整个作业执行成功。
 
-4.  TaskTracker 为 Task 准备好运行环境后，便会启动 Task。在运行过程中，每个 Task 的最新进度首先由 Task 通过 RPC 汇报给 TaskTracker，再由 TaskTracker 汇报给 JobTracker。
+# 25. Spark
 
-> 847"***5.作业完成。***
-
-5.  待所有 Task 执行完毕后，整个作业执行成功。
-
-# <span class="underline">26. Spark</span> 
-
-## 概念
+## 25.1 概念
 
 > Spark 提供了一个全面、统一的框架用于管理各种有着不同性质（文本数据、图表数据等）的数据集和数据源（批量数据或实时的流数据）的大数据处理的需求。
 
-## 核心架构
+## 25.2 核心架构
 
-![](media/image164.jpeg){width="4.120214348206474in" height="3.1770833333333335in"}
-
-> 851"***Spark Core***
+> ![image-20220714103316007](Java核心知识点.assets/image-20220714103316007.png)
+>
+> **Spark Core**
 >
 > 包含 Spark 的基本功能；尤其是定义 RDD 的 API、操作以及这两者上的动作。其他 Spark 的库都是构建在 RDD 和 Spark Core 之上的
 >
-> 852"***Spark SQL***
+> **Spark SQL**
 >
 > 提供通过Apache Hive 的 SQL 变体 Hive 查询语言（HiveQL）与 Spark 进行交互的API。每个数据库表被当做一个 RDD，Spark SQL 查询被转换为 Spark 操作。
 >
-> 853"***Spark Streaming***
+> **Spark Streaming**
 >
 > 对实时数据流进行处理和控制。Spark Streaming 允许程序能够像普通 RDD 一样处理实时数据
 >
-> 854"***Mllib***
+> **Mllib**
 >
 > 一个常用机器学习算法库，算法被实现为对 RDD 的 Spark 操作。这个库包含可扩展的学习算法，比如分类、回归等需要对大量数据集进行迭代的操作。
 >
-> 855"***GraphX***
+> **GraphX**
 >
 > 控制图、并行图操作和计算的一组算法和工具的集合。GraphX 扩展了 RDD API，包含控制图、创建子图、访问路径上所有顶点的操作
 
-## 核心组件
+## 25.3 核心组件
 
-![](media/image165.jpeg){width="6.204167760279965in" height="2.9791666666666665in"}
-
-> 857"***Cluster Manager-制整个集群，监控 worker***
+> ![image-20220714103400677](Java核心知识点.assets/image-20220714103400677.png)
+>
+> ***Cluster Manager-制整个集群，监控 worker***
 >
 > 在 standalone 模式中即为 Master 主节点，控制整个集群，监控 worker。在 YARN 模式中为资源管理器
 >
-> 858"***Worker 节点-负责控制计算节点***
+> ***Worker 节点-负责控制计算节点***
 >
 > 从节点，负责控制计算节点，启动 Executor 或者 Driver。
 >
-> 859"***Driver：运行 Application 的 main()函数***
+> ***Driver：运行 Application 的 main()函数***
 >
-> 860"***Executor：执行器，是为某个 Application 运行在 worker node 上的一个进程***
+> ***Executor：执行器，是为某个 Application 运行在 worker node 上的一个进程***
 
-## SPARK 编程模型
+## 25.4 SPARK 编程模型
 
-![](media/image166.jpeg){width="6.224429133858267in" height="2.875in"}
-
+> ![image-20220714103446153](Java核心知识点.assets/image-20220714103446153.png)
+>
 > Spark 应用程序从编写到提交、执行、输出的整个过程如图所示，图中描述的步骤如下：
-
-1.  用户使用 SparkContext 提供的API（常用的有textFile、sequenceFile、runJob、stop 等）编写 Driver application 程序。此外 SQLContext、HiveContext 及 StreamingContext 对
-
-> SparkContext 进行封装，并提供了SQL、Hive 及流式计算相关的API。
-
-2.  使用SparkContext 提交的用户应用程序，首先会使用BlockManager 和BroadcastManager
-
-> 将任务的 Hadoop 配置进行广播。然后由DAGScheduler 将任务转换为 RDD 并组织成 DAG，
 >
-> DAG 还将被划分为不同的 Stage。最后由 TaskScheduler 借助 ActorSystem 将任务提交给集群管理器（Cluster Manager）。
+> 1.  用户使用 SparkContext 提供的API（常用的有textFile、sequenceFile、runJob、stop 等）编写 Driver application 程序。此外 SQLContext、HiveContext 及 StreamingContext 对SparkContext 进行封装，并提供了SQL、Hive 及流式计算相关的API。
+>
+> 2.  使用SparkContext 提交的用户应用程序，首先会使用BlockManager 和BroadcastManager将任务的 Hadoop 配置进行广播。然后由DAGScheduler 将任务转换为 RDD 并组织成 DAG，DAG 还将被划分为不同的 Stage。最后由 TaskScheduler 借助 ActorSystem 将任务提交给集群管理器（Cluster Manager）。
+>
+> 3.  集群管理器（ClusterManager）给任务分配资源，即将具体任务分配到Worker 上，Worker创建 Executor 来处理任务的运行。Standalone、YARN、Mesos、EC2 等都可以作为 Spark的集群管理器。
 
-3.  集群管理器（ClusterManager）给任务分配资源，即将具体任务分配到Worker 上，Worker创建 Executor 来处理任务的运行。Standalone、YARN、Mesos、EC2 等都可以作为 Spark的集群管理器。
 
-    1.  ## SPARK 计算模型
+
+## 25.5 SPARK 计算模型
 
 > RDD 可以看做是对各种数据计算模型的统一抽象，Spark 的计算过程主要是 RDD 的迭代计算过程。RDD 的迭代计算过程非常类似于管道。分区数量取决于partition 数量的设定，每个分区的数据只会在一个 Task 中计算。所有分区可以在多个机器节点的 Executor 上并行执行。
-
-![](media/image167.jpeg){width="6.2053532370953635in" height="2.019582239720035in"}
-
-## SPARK 运行流程
-
-![](media/image168.jpeg){width="4.682015529308837in" height="3.5184372265966752in"}
-
-1.  bookmark864"***构建 Spark Application 的运行环境，启动 SparkContext***
-
-2.  bookmark865"***SparkContext 向资源管理器（可以是 Standalone，Mesos，Yarn）申请运行 Executor 资源，并启动 StandaloneExecutorbackend，***
-
-3.  bookmark866"***Executor 向 SparkContext 申请 Task***
-
-4.  bookmark867"***SparkContext 将应用程序分发给 Executor***
-
-5.  bookmark868"***SparkContext 构建成 DAG 图，将 DAG 图分解成 Stage、将 Taskset 发送给 Task Scheduler，最后由 Task Scheduler 将 Task 发送给 Executor 运行***
-
-6.  bookmark869"***Task 在 Executor 上运行，运行完释放所有资源***
-
-    1.  ## SPARK RDD 流程
-
-![](media/image169.jpeg){width="6.181678696412948in" height="3.4166666666666665in"}
-
-1.  创建 RDD 对象
-
-2.  DAGScheduler 模块介入运算，计算 RDD 之间的依赖关系，RDD 之间的依赖关系就形成了
-
-> DAG
-
-3.  每一个 Job 被分为多个 Stage。划分 Stage 的一个主要依据是当前计算因子的输入是否是确定的，如果是则将其分在同一个 Stage，避免多个 Stage 之间的消息传递开销
-
-    1.  ## SPARK RDD
-
-### （1）RDD 的创建方式
-
-> 1）从 Hadoop 文件系统（或与Hadoop 兼容的其他持久化存储系统，如Hive、Cassandra、
 >
-> HBase）输入（例如 HDFS）创建。
->
-> 2）从父 RDD 转换得到新 RDD。
->
-> 3）通过 parallelize 或 makeRDD 将单机数据创建为分布式 RDD。
->
-> 873"**（2）RDD 的两种操作算子（转换（Transformation）与行动（Action））**
->
-> 对于 RDD 可以有两种操作算子：转换（Transformation）与行动（Action）。
->
-> 1）转换（Transformation）：Transformation 操作是延迟计算的，也就是说从一个RDD 转换生成另一个 RDD 的转换操作不是马上执行，需要等到有 Action 操作的时候才会真正触发运算。
+> ![image-20220714103525140](Java核心知识点.assets/image-20220714103525140.png)
 
-![](media/image170.jpeg){width="6.225122484689414in" height="3.060416666666667in"}
 
-> 2）行动（Action）：Action 算子会触发 Spark 提交作业（Job），并将数据输出 Spark 系统。
+
+## 25.6 SPARK 运行流程
+
+> ![image-20220714103546483](Java核心知识点.assets/image-20220714103546483.png)
 >
-> ![](media/image171.jpeg){width="6.222188320209974in" height="2.850520559930009in"}
+> 1.  ***构建 Spark Application 的运行环境，启动 SparkContext***
+> 2.  ***SparkContext 向资源管理器（可以是 Standalone，Mesos，Yarn）申请运行 Executor 资源，并启动 StandaloneExecutorbackend，***
+> 3.  ***Executor 向 SparkContext 申请 Task***
+> 4.  ***SparkContext 将应用程序分发给 Executor***
+> 5.  ***SparkContext 构建成 DAG 图，将 DAG 图分解成 Stage、将 Taskset 发送给 Task Scheduler，最后由 Task Scheduler 将 Task 发送给 Executor 运行***
+> 6.  ***Task 在 Executor 上运行，运行完释放所有资源***
 
-# <span class="underline">Storm</span> 
+## 25.7 SPARK RDD 流程
 
-## 27.1.1.概念
+> ![image-20220714103805933](Java核心知识点.assets/image-20220714103805933.png)
+>
+> 1.  创建 RDD 对象
+> 2.  DAGScheduler 模块介入运算，计算 RDD 之间的依赖关系，RDD 之间的依赖关系就形成了DAG
+>
+> 3.  每一个 Job 被分为多个 Stage。划分 Stage 的一个主要依据是当前计算因子的输入是否是确定的，如果是则将其分在同一个 Stage，避免多个 Stage 之间的消息传递开销
+
+## 25.8 SPARK RDD
+
+> **（1）RDD 的创建方式**
+>
+> ​	1）从 Hadoop 文件系统（或与Hadoop 兼容的其他持久化存储系统，如Hive、Cassandra、HBase）输入（例如 HDFS）创建。
+>
+> ​	2）从父 RDD 转换得到新 RDD。
+>
+> ​	3）通过 parallelize 或 makeRDD 将单机数据创建为分布式 RDD。
+>
+> **（2）RDD 的两种操作算子（转换（Transformation）与行动（Action））**
+>
+> ​	对于 RDD 可以有两种操作算子：转换（Transformation）与行动（Action）。
+>
+> ​	1）转换（Transformation）：Transformation 操作是延迟计算的，也就是说从一个RDD 转换生成另一个 RDD 的转换操作不是马上执行，需要等到有 Action 操作的时候才会真正触发运算。
+>
+> ![image-20220714103823231](Java核心知识点.assets/image-20220714103823231.png)
+>
+> 2）行动（Action）：Action 算子会触发 Spark 提交作业（Job)，并将数据输出 Spark 系统。
+>
+> ![image-20220714103841478](Java核心知识点.assets/image-20220714103841478.png)
+
+# 26. Storm
+
+## 26.1 概念
 
 > Storm 是一个免费并开源的分布式实时计算系统。利用 Storm 可以很容易做到可靠地处理无限的数据流，像 Hadoop 批量处理大数据一样，Storm 可以实时处理数据。
 
-## 集群架构
+## 26.2 集群架构
 
-![](media/image172.jpeg){width="6.300812554680665in" height="3.6884372265966756in"}
-
-1.  bookmark877"**Nimbus（master-代码分发给 Supervisor）**
-
+> ![image-20220714103911987](Java核心知识点.assets/image-20220714103911987.png)
+>
+> **Nimbus（master-代码分发给 Supervisor）**
+>
 > Storm 集群的 Master 节点，负责分发用户代码，指派给具体的 Supervisor 节点上的 Worker 节点，去运行 Topology 对应的组件（Spout/Bolt）的 Task。
-
-2.  bookmark878"**Supervisor（slave-管理 Worker 进程的启动和终止）**
-
-> Storm 集群的从节点，负责管理运行在 Supervisor 节点上的每一个 Worker 进程的启动和终止。通过 Storm 的配置文件中的 supervisor.slots.ports 配置项，可以指定在一个 Supervisor 上最大允许多少个 Slot，每个 Slot 通过端口号来唯一标识，一个端口号对应一个 Worker 进程（如果该
 >
-> Worker 进程被启动）。
-
-3.  bookmark879"**Worker（具体处理组件逻辑的进程）**
-
-> 运行具体处理组件逻辑的进程。Worker 运行的任务类型只有两种，一种是 Spout 任务，一种是
+> **Supervisor（slave-管理 Worker 进程的启动和终止）**
 >
-> Bolt 任务。
+> Storm 集群的从节点，负责管理运行在 Supervisor 节点上的每一个 Worker 进程的启动和终止。通过 Storm 的配置文件中的 supervisor.slots.ports 配置项，可以指定在一个 Supervisor 上最大允许多少个 Slot，每个 Slot 通过端口号来唯一标识，一个端口号对应一个 Worker 进程（如果该Worker 进程被启动）。
+>
+> **Worker（具体处理组件逻辑的进程）**
+>
+> 运行具体处理组件逻辑的进程。Worker 运行的任务类型只有两种，一种是 Spout 任务，一种是Bolt 任务。
 
-### Task
+### 26.2.1 Task
 
 > worker 中每一个spout/bolt 的线程称为一个task.在storm0.8 之后，task 不再与物理线程对应，不同spout/bolt 的 task 可能会共享一个物理线程，该线程称为 executor。
 
-### ZooKeeper
+### 26.2.2 ZooKeeper
 
-> 用来协调 Nimbus 和 Supervisor，如果 Supervisor 因故障出现问题而无法运行 Topology，
->
-> Nimbus 会第一时间感知到，并重新分配 Topology 到其它可用的 Supervisor 上运行
+> 用来协调 Nimbus 和 Supervisor，如果 Supervisor 因故障出现问题而无法运行 Topology，Nimbus 会第一时间感知到，并重新分配 Topology 到其它可用的 Supervisor 上运行
 
-2.  bookmark882"**编程模型（spout-\>tuple-\>bolt）**
+### 26.2.3 编程模型（spout->tuple->bolt）
 
 > strom 在运行中可分为 spout 与 bolt 两个组件，其中，数据源从 spout 开始，数据以 tuple 的方式发送到 bolt，多个 bolt 可以串连起来，一个 bolt 也可以接入多个 spot/bolt.运行时原理如下图：
-
-![](media/image173.jpeg){width="5.716665573053368in" height="2.6979166666666665in"}
-
-### Topology
-
-> Storm 中运行的一个实时应用程序的名称。将 Spout、 Bolt 整合起来的拓扑图。定义了 Spout 和
 >
-> Bolt 的结合关系、并发数量、配置等等。
+> ![image-20220714110624548](Java核心知识点.assets/image-20220714110624548.png)
 
-### Spout
+### 26.2.4 Topology
+
+> Storm 中运行的一个实时应用程序的名称。将 Spout、 Bolt 整合起来的拓扑图。定义了 Spout 和Bolt 的结合关系、并发数量、配置等等。
+>
+
+### 26.2.5 Spout
 
 > 在一个topology 中获取源数据流的组件。通常情况下spout 会从外部数据源中读取数据，然后转换为topology 内部的源数据。
 
-### Bolt
+### 26.2.6 Bolt
 
 > 接受数据然后执行处理的组件,用户可以在其中执行自己想要的操作。
 
-### Tuple
+### 26.2.7 Tuple
 
 > 一次消息传递的基本单元，理解为一组消息就是一个 Tuple。
 
-### Stream
+### 26.2.8 Stream
 
 > Tuple 的集合。表示数据的流向。
 
-## Topology 运行
+## 26.3 Topology 运行
 
-> 在 Storm 中,一个实时应用的计算任务被打包作为 Topology 发布，这同 Hadoop MapReduce
+> 在 Storm 中,一个实时应用的计算任务被打包作为 Topology 发布，这同 Hadoop MapReduce任务相似。但是有一点不同的是:在 Hadoop 中，MapReduce 任务最终会执行完成后结束；而在Storm 中，Topology 任务一旦提交后永远不会结束，除非你显示去停止任务。计算任务Topology 是由不同的 Spouts 和 Bolts，通过数据流（Stream）连接起来的图｡一个 Storm 在集群上运行一个 Topology 时，主要通过以下3 个实体来完成 Topology 的执行工作：
 >
-> 任务相似。但是有一点不同的是:在 Hadoop 中，MapReduce 任务最终会执行完成后结束；而在
+> 1.  ***Worker（进程）***
+>2.  ***Executor（线程）***
+> 3.  ***Task***
 >
-> Storm 中，Topology 任务一旦提交后永远不会结束，除非你显示去停止任务。计算任务
+> ![image-20220714113828691](Java核心知识点.assets/image-20220714113828691.png)
+
+### 26.3.1 Worker(1 个worker 进程执行的是1 个 topology 的子集)
+
+> 1 个 worker 进程执行的是1 个 topology 的子集（注：不会出现1 个 worker 为多个 topology服务）。1 个 worker 进程会启动1 个或多个 executor 线程来执行1 个 topology 的component(spout 或 bolt)。因此，1 个运行中的 topology 就是由集群中多台物理机上的多个worker 进程组成的。
+
+### 26.3.2 Executor(executor 是1 个被worker 进程启动的单独线程)
+
+> executor 是1 个被 worker 进程启动的单独线程。每个 executor 只会运行1 个 topology 的1 个component(spout 或 bolt)的 task（注：task 可以是1 个或多个，storm 默认是1 个component 只生成1 个 task，executor 线程里会在每次循环里顺序调用所有 task 实例）。
 >
-> Topology 是由不同的 Spouts 和 Bolts，通过数据流（Stream）连接起来的图｡一个 Storm 在集群上运行一个 Topology 时，主要通过以下3 个实体来完成 Topology 的执行工作：
 
-1.  bookmark889"***Worker（进程）***
+### 26.3.3 Task(最终运行 spout 或bolt 中代码的单元)
 
-2.  ***Executor（线程）***
-
-3.  ***Task***
-
-> ![](media/image174.jpeg){width="6.211970691163605in" height="2.9137489063867017in"}
-
-###### Worker(1 个worker 进程执行的是1 个 topology 的子集)
-
-> 1 个 worker 进程执行的是1 个 topology 的子集（注：不会出现1 个 worker 为多个 topology
+> 是最终运行 spout 或 bolt 中代码的单元（注：1 个 task 即为 spout 或 bolt 的1 个实例，executor 线程在执行期间会调用该 task 的 nextTuple 或 execute 方法）。topology 启动后，1个 component(spout 或bolt)的 task 数目是固定不变的，但该 component 使用的 executor 线程数可以动态调整（例如：1 个 executor 线程可以执行该 component 的1 个或多个 task 实例）。这意味着，对于1 个 component 存在这样的条件：\#threads\<=\#tasks（即：线程数小于等于task 数目）。默认情况下task 的数目等于 executor 线程数目，即1 个executor 线程只运行1 个 task。
 >
-> 服务）。1 个 worker 进程会启动1 个或多个 executor 线程来执行1 个 topology 的
->
-> component(spout 或 bolt)。因此，1 个运行中的 topology 就是由集群中多台物理机上的多个
->
-> worker 进程组成的。
+> ![image-20220714114002605](Java核心知识点.assets/image-20220714114002605.png)
 
-2.  bookmark891"**Executor(executor 是1 个被worker 进程启动的单独线程)**
-
-> executor 是1 个被 worker 进程启动的单独线程。每个 executor 只会运行1 个 topology 的1 个
->
-> component(spout 或 bolt)的 task（注：task 可以是1 个或多个，storm 默认是1 个
->
-> component 只生成1 个 task，executor 线程里会在每次循环里顺序调用所有 task 实例）。
-
-3.  bookmark892"**Task(最终运行 spout 或bolt 中代码的单元)**
-
-> 是最终运行 spout 或 bolt 中代码的单元（注：1 个 task 即为 spout 或 bolt 的1 个实例，
->
-> executor 线程在执行期间会调用该 task 的 nextTuple 或 execute 方法）。topology 启动后，1个 component(spout 或bolt)的 task 数目是固定不变的，但该 component 使用的 executor 线程数可以动态调整（例如：1 个 executor 线程可以执行该 component 的1 个或多个 task 实
->
-> 例）。这意味着，对于1 个 component 存在这样的条件：\#threads\<=\#tasks（即：线程数小于等于task 数目）。默认情况下task 的数目等于 executor 线程数目，即1 个executor 线程只运行1 个 task。
-
-![](media/image175.jpeg){width="6.552926509186352in" height="4.6542705599300085in"}
-
-## Storm Streaming Grouping
+## 26.4 Storm Streaming Grouping
 
 > Storm 中最重要的抽象，应该就是 Stream grouping 了，它能够控制 Spot/Bolt 对应的 Task 以什么样的方式来分发 Tuple，将 Tuple 发射到目的Spot/Bolt 对应的 Task.
 >
-> ![](media/image176.jpeg){width="5.305874890638671in" height="4.586457786526684in"}
+> ![image-20220714114028691](Java核心知识点.assets/image-20220714114028691.png)
 >
 > 目前，Storm Streaming Grouping 支持如下几种类型：
 
-### huffle Grouping
+### 26.4.1 huffle Grouping
 
 > 随机分组，尽量均匀分布到下游 Bolt 中将流分组定义为混排。这种混排分组意味着来自 Spout 的输入将混排，或随机分发给此 Bolt 中的任务。shuffle grouping 对各个 task 的 tuple 分配的比较均匀。
 
-### Fields Grouping
+### 26.4.2 Fields Grouping
 
 > 按字段分组，按数据中field 值进行分组；相同field 值的 Tuple 被发送到相同的 Task 这种
 >
 > grouping 机制保证相同field 值的tuple 会去同一个 task。
 
-### All grouping ：广播
+### 26.4.3 All grouping ：广播
 
 > 广播发送，对于每一个tuple 将会复制到每一个 bolt 中处理。
 
-### Global grouping
+### 26.4.4 Global grouping
 
 > 全局分组，Tuple 被分配到一个 Bolt 中的一个 Task，实现事务性的 Topology。Stream 中的所有的tuple 都会发送给同一个 bolt 任务处理，所有的 tuple 将会发送给拥有最小task_id 的 bolt任务处理。
 
-### None grouping ：不分组
+### 26.4.5 None grouping ：不分组
 
-> 不关注并行处理负载均衡策略时使用该方式，目前等同于 shuffle grouping,另外 storm 将会把
+> 不关注并行处理负载均衡策略时使用该方式，目前等同于 shuffle grouping,另外 storm 将会把bolt 任务和他的上游提供数据的任务安排在同一个线程下。
 >
-> bolt 任务和他的上游提供数据的任务安排在同一个线程下。
 
-### Direct grouping ：直接分组指定分组
+### 26.4.6 Direct grouping ：直接分组指定分组
 
-> 由 tuple 的发射单元直接决定tuple 将发射给那个bolt，一般情况下是由接收 tuple 的 bolt 决定接收哪个 bolt 发射的 Tuple。这是一种比较特别的分组方法，用这种分组意味着消息的发送者指定由消息接收者的哪个 task 处理这个消息。只有被声明为 Direct Stream 的消息流可以声明这种分组方法。而且这种消息 tuple 必须使用 emitDirect 方法来发射。消息处理者可以通过
+> 由 tuple 的发射单元直接决定tuple 将发射给那个bolt，一般情况下是由接收 tuple 的 bolt 决定接收哪个 bolt 发射的 Tuple。这是一种比较特别的分组方法，用这种分组意味着消息的发送者指定由消息接收者的哪个 task 处理这个消息。只有被声明为 Direct Stream 的消息流可以声明这种分组方法。而且这种消息 tuple 必须使用 emitDirect 方法来发射。消息处理者可以通过TopologyContext 来获取处理它的消息的 taskid (OutputCollector.emit 方法也会返回taskid)。
 >
-> TopologyContext 来获取处理它的消息的 taskid (OutputCollector.emit 方法也会返回
->
-> taskid)。
 
-28. # <span class="underline">YARN</span> 
+# 27. YARN
 
-    1.  ## 概念
+## 27.1 概念
 
-> YARN 是一个资源管理、任务调度的框架，主要包含三大模块：ResourceManager（RM）、
->
-> NodeManager（NM）、ApplicationMaster（AM）。其中，ResourceManager 负责所有资源的监控、分配和管理； ApplicationMaster 负责每一个具体应用程序的调度和协调；
+> YARN 是一个资源管理、任务调度的框架，主要包含三大模块：ResourceManager（RM）、NodeManager（NM）、ApplicationMaster（AM）。其中，ResourceManager 负责所有资源的监控、分配和管理； ApplicationMaster 负责每一个具体应用程序的调度和协调；
 >
 > NodeManager 负责每一个节点的维护。对于所有的applications，RM 拥有绝对的控制权和对资源的分配权。而每个 AM 则会和 RM 协商资源，同时和 NodeManager 通信来执行和监控 task。
 >
 > 几个模块之间的关系如图所示。
+>
+> ![image-20220714114205262](Java核心知识点.assets/image-20220714114205262.png)
 
-![](media/image177.png){width="6.288741251093613in" height="3.8901038932633423in"}
+## 27.2 ResourceManager
 
-## ResourceManager
+> 1.  ResourceManager 负责整个集群的资源管理和分配，是一个全局的资源管理系统。
+> 2.  NodeManager 以心跳的方式向 ResourceManager 汇报资源使用情况（目前主要是 CPU 和内存的使用情况）。RM 只接受 NM 的资源回报信息，对于具体的资源处理则交给 NM 自己处理。
+> 3.  YARN Scheduler 根据 application 的请求为其分配资源，不负责 application job 的监控、追踪、运行状态反馈、启动等工作。
 
-1.  ResourceManager 负责整个集群的资源管理和分配，是一个全局的资源管理系统。
+## 27.3 NodeManager
 
-2.  NodeManager 以心跳的方式向 ResourceManager 汇报资源使用情况（目前主要是 CPU 和内存的使用情况）。RM 只接受 NM 的资源回报信息，对于具体的资源处理则交给 NM 自己处理。
+> 1.  NodeManager 是每个节点上的资源和任务管理器，它是管理这台机器的代理，负责该节点程序的运行，以及该节点资源的管理和监控。YARN 集群每个节点都运行一个NodeManager。
+>
+> 2.  NodeManager 定时向 ResourceManager 汇报本节点资源（CPU、内存）的使用情况和Container 的运行状态。当 ResourceManager 宕机时 NodeManager 自动连接 RM 备用节点。
+>
+> 3.  NodeManager 接收并处理来自 ApplicationMaster 的Container 启动、停止等各种请求。
 
-3.  YARN Scheduler 根据 application 的请求为其分配资源，不负责 application job 的监控、追踪、运行状态反馈、启动等工作。
-
-    1.  ## NodeManager
-
-&nbsp;
-
-1.  NodeManager 是每个节点上的资源和任务管理器，它是管理这台机器的代理，负责该节点程序的运行，以及该节点资源的管理和监控。YARN 集群每个节点都运行一个NodeManager。
-
-2.  NodeManager 定时向 ResourceManager 汇报本节点资源（CPU、内存）的使用情况和
-
-> Container 的运行状态。当 ResourceManager 宕机时 NodeManager 自动连接 RM 备用节点。
-
-3.  NodeManager 接收并处理来自 ApplicationMaster 的Container 启动、停止等各种请求。
-
-    1.  ###### ApplicationMaster
+### 27.3.1 ApplicationMaster
 
 > 用户提交的每个应用程序均包含一个ApplicationMaster，它可以运行在 ResourceManager 以外的机器上。
-
-1.  负责与 RM 调度器协商以获取资源（用Container 表示）。
-
-2.  将得到的任务进一步分配给内部的任务(资源的二次分配)。
-
-3.  与 NM 通信以启动/停止任务。
-
-4.  监控所有任务运行状态，并在任务运行失败时重新为任务申请资源以重启任务。
-
-5.  当前 YARN 自带了两个 ApplicationMaster 实现，一个是用于演示 AM 编写方法的实例程序
-
-> DistributedShell，它可以申请一定数目的 Container 以并行运行一个 Shell 命令或者 Shell
 >
-> 脚本；另一个是运行 MapReduce 应用程序的 AM---MRAppMaster。
+> 1.  负责与 RM 调度器协商以获取资源（用Container 表示）。
+>
+> 2.  将得到的任务进一步分配给内部的任务(资源的二次分配)。
+>
+> 3.  与 NM 通信以启动/停止任务。
+>
+> 4.  监控所有任务运行状态，并在任务运行失败时重新为任务申请资源以重启任务。
+>
+> 5.  当前 YARN 自带了两个 ApplicationMaster 实现，一个是用于演示 AM 编写方法的实例程序DistributedShell，它可以申请一定数目的 Container 以并行运行一个 Shell 命令或者 Shell脚本；另一个是运行 MapReduce 应用程序的 AM---MRAppMaster。
 >
 > 注：RM 只负责监控 AM，并在 AM 运行失败时候启动它。RM 不负责 AM 内部任务的容错，任务的容错由AM 完成。
 
-###### YARN 运行流程
+### 27.3.2 YARN 运行流程
 
-![](media/image178.png){width="6.239337270341207in" height="5.061874453193351in"}
+> ![image-20220714114521523](Java核心知识点.assets/image-20220714114521523.png)
+>
+> 1.  client 向 RM 提交应用程序，其中包括启动该应用的 ApplicationMaster 的必须信息，例如ApplicationMaster 程序、启动 ApplicationMaster 的命令、用户程序等。
+>
+> 2.  ResourceManager 启动一个 container 用于运行ApplicationMaster。
+>
+> 3.  启动中的ApplicationMaster 向ResourceManager 注册自己，启动成功后与RM 保持心跳。
+>
+> 4.  ApplicationMaster 向 ResourceManager 发送请求，申请相应数目的 container。
+>
+> 5.  ResourceManager 返回 ApplicationMaster 的申请的 containers 信息。申请成功的 container，由 ApplicationMaster 进行初始化。container 的启动信息初始化后，AM 与对应的NodeManager 通信，要求NM 启动 container。AM 与 NM 保持心跳，从而对NM 上运行的任务进行监控和管理。
+>
+> 6.  container 运行期间，ApplicationMaster 对 container 进行监控。container 通过 RPC 协议向对应的AM 汇报自己的进度和状态等信息。
+>
+> 7.  应用运行期间，client 直接与AM 通信获取应用的状态、进度更新等信息。
+>
+> 8.  应用运行结束后，ApplicationMaster 向 ResourceManager 注销自己，并允许属于它的container 被收回。
 
-1.  client 向 RM 提交应用程序，其中包括启动该应用的 ApplicationMaster 的必须信息，例如
+# 28. 机器学习
 
-> ApplicationMaster 程序、启动 ApplicationMaster 的命令、用户程序等。
+## 28.1 决策树
 
-2.  ResourceManager 启动一个 container 用于运行ApplicationMaster。
+## 28.2 随机森林算法
 
-3.  启动中的ApplicationMaster 向ResourceManager 注册自己，启动成功后与RM 保持心跳。
+## 28.3 逻辑回归
 
-4.  ApplicationMaster 向 ResourceManager 发送请求，申请相应数目的 container。
+## 28.4 SVM
 
-5.  ResourceManager 返回 ApplicationMaster 的申请的 containers 信息。申请成功的 container，由 ApplicationMaster 进行初始化。container 的启动信息初始化后，AM 与对应的NodeManager 通信，要求NM 启动 container。AM 与 NM 保持心跳，从而对NM 上运行的任务进行监控和管理。
+## 28.5 朴素贝叶斯
 
-6.  container 运行期间，ApplicationMaster 对 container 进行监控。container 通过 RPC 协议向对应的AM 汇报自己的进度和状态等信息。
+## 28.6 K 最近邻算法
 
-7.  应用运行期间，client 直接与AM 通信获取应用的状态、进度更新等信息。
+## 28.7 K 均值算法
 
-8.  应用运行结束后，ApplicationMaster 向 ResourceManager 注销自己，并允许属于它的
+## 28.8 Adaboost 算法
 
-> container 被收回。
+## 28.9 神经网络
 
-29. # 机器学习
+## 28.10 马尔可夫
 
-    1.  ## 决策树
+参考：[<span class="underline">http://www.cyzone.cn/a/20170422/310196.html</span>](http://www.cyzone.cn/a/20170422/310196.html)
 
-    2.  ## 随机森林算法
+# 29. 云计算
 
-    3.  ## 逻辑回归
-
-    4.  ## SVM
-
-    5.  ## 朴素贝叶斯
-
-    6.  ## K 最近邻算法
-
-    7.  ## K 均值算法
-
-    8.  ## Adaboost 算法
-
-    9.  ## 神经网络
-
-    10. ## 马尔可夫
-
-> 参考：[<span class="underline">http://www.cyzone.cn/a/20170422/310196.html</span>](http://www.cyzone.cn/a/20170422/310196.html)
-
-30. # 云计算
-
-    1.  ## SaaS
+## 29.1 SaaS
 
 > SaaS 是 Software-as-a-Service（软件即服务）
 
-## PaaS
+## 29.2 PaaS
 
 > PaaS 是 Platform-as-a-Service 的缩写，意思是平台即服务。把服务器平台作为一种服务提供的商业模式。通过网络进行程序提供的服务称之为 SaaS(Software as a Service)，而云计算时代相应的服务器平台或者开发环境作为服务进行提供就成为了 PaaS(Platform as a Service)。
 
-## IaaS
+## 29.3 IaaS
 
 > IaaS（Infrastructure as a Service），即基础设施即服务。提供给消费者的服务是对所有设施的利用，包括处理、存储、网络和其它基本的计算资源，用户能够部署和运行任意软件，包括操作系统和应用程序。
-
-![](media/image179.jpeg){width="6.2551410761154855in" height="2.75in"}
-
-4.  ## Docker
-
-    1.  ### 概念
-
-+-------------+-------------------------------------------+
-| Docker 镜像| Docker 镜像是用于创建 Docker 容器的模板。|
-|||
-|(Images)||
-+-------------+-------------------------------------------+
-
-+---------------+--------------------------------------------------------------------------------+
-| Docker 容器|容器是独立运行的一个或一组应用。|
-|||
-|(Container)||
-+===============+================================================================================+
-| Docker 客户端| Docker 客户端通过命令行或者其他工具使用 Docker API 与 Docker 的守护进程通信。|
-|||
-|(Client)||
-+---------------+--------------------------------------------------------------------------------+
-| Docker 主机|一个物理或者虚拟的机器用于执行 Docker 守护进程和容器。|
-|||
-|(Host)||
-+---------------+--------------------------------------------------------------------------------+
-| Docker 仓库| Docker 仓库用来保存镜像，可以理解为代码控制中的代码仓库。|
-|||
-|(Registry)| Docker Hub 提供了庞大的镜像集合供使用。|
-+---------------+--------------------------------------------------------------------------------+
-| Docker | Docker Machine 是一个简化Docker 安装的命令行工具，通过一个简单的命令行即可在相|
-|||
-| Machine |应的平台上安装 Docker，比如 VirtualBox、 Digital Ocean、Microsoft Azure。|
-+---------------+--------------------------------------------------------------------------------+
-
-> Docker 的出现一定是因为目前的后端在开发和运维阶段确实需要一种虚拟化技术解决开发环境和生产环境环境一致的问题，通过 Docker 我们可以将程序运行的环境也纳入到版本控制中，排除因为环境造成不同运行结果的可能。但是上述需求虽然推动了虚拟化技术的产生，但是如果没有合适的底层技术支撑，那么我们仍然得不到一个完美的产品。本文剩下的内容会介绍几种 Docker 使用的核心技术，如果我们了解它们的使用方法和原理，就能清楚 Docker 的实现原理。Docker 使用客户端-服务器(C/S)架构模式，使用远程 API 来管理和创建 Docker 容器。Docker 容器通过
 >
-> Docker 镜像来创建。
+> ![image-20220714114633403](Java核心知识点.assets/image-20220714114633403.png)
 
-![](media/image180.png){width="4.738824365704287in" height="3.5933333333333333in"}
+## 29.4 Docker
 
-### Namespaces
+### 29.4.1 概念
+
+| Docker 镜像(Images)    | Docker 镜像是用于创建 Docker 容器的模板。                    |
+| ---------------------- | ------------------------------------------------------------ |
+| Docker 容器(Container) | 容器是独立运行的一个或一组应用。                             |
+| Docker 客户端(Client)  | Docker 客户端通过命令行或者其他工具使用 Docker API 与 Docker 的守护进程通信。 |
+| Docker 主机(Host)      | 一个物理或者虚拟的机器用于执行 Docker 守护进程和容器。       |
+| Docker 仓库(Registry)  | Docker 仓库用来保存镜像，可以理解为代码控制中的代码仓库。<br>Docker Hub 提供了庞大的镜像集合供使用。 |
+| Docker Machine         | Docker Machine 是一个简化Docker 安装的命令行工具，通过一个简单的命令行即可在相应的平台上安装 Docker，比如 VirtualBox、 Digital Ocean、Microsoft Azure。 |
+
+> Docker 的出现一定是因为目前的后端在开发和运维阶段确实需要一种虚拟化技术解决开发环境和生产环境环境一致的问题，通过 Docker 我们可以将程序运行的环境也纳入到版本控制中，排除因为环境造成不同运行结果的可能。但是上述需求虽然推动了虚拟化技术的产生，但是如果没有合适的底层技术支撑，那么我们仍然得不到一个完美的产品。本文剩下的内容会介绍几种 Docker 使用的核心技术，如果我们了解它们的使用方法和原理，就能清楚 Docker 的实现原理。Docker 使用客户端-服务器(C/S)架构模式，使用远程 API 来管理和创建 Docker 容器。Docker 容器通过Docker 镜像来创建。
+>
+> ![image-20220714115108995](Java核心知识点.assets/image-20220714115108995.png)
+
+### 29.4.2 Namespaces
 
 > 命名空间（namespaces）是 Linux 为我们提供的用于分离进程树、网络接口、挂载点以及进程间通信等资源的方法。在日常使用 Linux 或者 macOS 时，我们并没有运行多个完全分离的服务器的需要，但是如果我们在服务器上启动了多个服务，这些服务其实会相互影响的，每一个服务都能看到其他服务的进程，也可以访问宿主机器上的任意文件，这是很多时候我们都不愿意看到的，我们更希望运行在同一台机器上的不同服务能做到完全隔离，就像运行在多台不同的机器上一样。
 >
-> Linux 的命名空间机制提供了以下七种不同的命名空间，包括 CLONE_NEWCGROUP、
+> Linux 的命名空间机制提供了以下七种不同的命名空间，包括 CLONE_NEWCGROUP、CLONE_NEWIPC、CLONE_NEWNET、CLONE_NEWNS、CLONE_NEWPID、CLONE_NEWUSER 和 CLONE_NEWUTS，通过这七个选项我们能在创建新的进程时设置新进程应该在哪些资源上与宿主机器进行隔离。
 >
-> CLONE_NEWIPC、CLONE_NEWNET、CLONE_NEWNS、CLONE_NEWPID、
->
-> CLONE_NEWUSER 和 CLONE_NEWUTS，通过这七个选项我们能在创建新的进程时设置新进程应该在哪些资源上与宿主机器进行隔离。
 
-###### 进程(CLONE_NEWPID 实现的进程隔离)
+### 29.4.3 进程(CLONE_NEWPID 实现的进程隔离)
 
 > docker 创建新进程时传入 CLONE_NEWPID 实现的进程隔离，也就是使用 Linux 的命名空间实现进程的隔离， Docker 容器内部的任意进程都对宿主机器的进程一无所知。当我们每次运行 docker run 或者 docker start 时，都会在创建一个用于设置进程间隔离的 Spec，同时会设置进程相关的命名空间，还会设置与用户、网络、IPC 以及 UTS 相关的命名空间，所有命名空间相关的设置 Spec 最后都会作为 Create 函数的入参在创建新的容器时进行设置。
 
-### Libnetwork 与网络隔离
+### 29.4.4 Libnetwork 与网络隔离
 
 > 如果 Docker 的容器通过 Linux 的命名空间完成了与宿主机进程的网络隔离，但是却有没有办法通过宿主机的网络与整个互联网相连，就会产生很多限制，所以 Docker 虽然可以通过命名空间创建一个隔离的网络环境，但是 Docker 中的服务仍然需要与外界相连才能发挥作用。
 >
 > Docker 整个网络部分的功能都是通过 Docker 拆分出来的 libnetwork 实现的，它提供了一个连接不同容器的实现，同时也能够为应用给出一个能够提供一致的编程接口和网络层抽象的容器网络模型。
 >
-> libnetwork 中最重要的概念，容器网络模型由以下的几个主要组件组成，分别是 Sandbox 、
->
-> Endpoint 和 Network。在容器网络模型中，每一个容器内部都包含一个 Sandbox，其中存储着当前容器的网络栈配置，包括容器的接口、路由表和 DNS 设置，Linux 使用网络命名空间实现这个
->
-> Sandbox，每一个 Sandbox 中都可能会有一个或多个 Endpoint，在 Linux 上就是一个虚拟的网卡
->
-> veth，Sandbox 通过 Endpoint 加入到对应的网络中，这里的网络可能就是我们在上面提到的 Linux
->
-> 网桥或者 VLAN。
+> libnetwork 中最重要的概念，容器网络模型由以下的几个主要组件组成，分别是 Sandbox 、Endpoint 和 Network。在容器网络模型中，每一个容器内部都包含一个 Sandbox，其中存储着当前容器的网络栈配置，包括容器的接口、路由表和 DNS 设置，Linux 使用网络命名空间实现这个Sandbox，每一个 Sandbox 中都可能会有一个或多个 Endpoint，在 Linux 上就是一个虚拟的网卡veth，Sandbox 通过 Endpoint 加入到对应的网络中，这里的网络可能就是我们在上面提到的 Linux网桥或者 VLAN。
 >
 > 每一个使用 docker run 启动的容器其实都具有单独的网络命名空间，Docker 为我们提供了四种不同的网络模式，Host、Container、None 和 Bridge 模式。
-
-![](media/image181.jpeg){width="6.256516841644794in" height="1.6666666666666667in"}
-
+>
+> ![image-20220714115225742](Java核心知识点.assets/image-20220714115225742.png)
+>
 > 在这一部分，我们将介绍 Docker 默认的网络设置模式：网桥模式。在这种模式下，除了分配隔离的网络命名空间之外，Docker 还会为所有的容器设置 IP 地址。当 Docker 服务器在主机上启动之后会创建新的虚拟网桥 docker0，随后在该主机上启动的全部服务在默认情况下都与该网桥相连。在默认情况下，
 >
 > 每一个容器在创建时都会创建一对虚拟网卡，两个虚拟网卡组成了数据的通道，其中一个会放在创建的容器中，会加入到名为 docker0 网桥中。
+>
+> ![image-20220714115241756](Java核心知识点.assets/image-20220714115241756.png)
 
-![](media/image182.png){width="6.2494783464566925in" height="3.6979166666666665in"}
-
-### 资源隔离与 CGroups
+### 29.4.5 资源隔离与 CGroups
 
 > Control Groups（简称 CGroups）能够隔离宿主机器上的物理资源，例如 CPU、内存、磁盘 I/O 和网络带宽。每一个 CGroup 都是一组被相同的标准和参数限制的进程，不同的 CGroup 之间是有层级关系的，也就是说它们之间可以从父类继承一些用于限制资源使用的标准和参数。
 
-### 镜像与 UnionFS
+### 29.4.6 镜像与 UnionFS
 
 > Linux 的命名空间和控制组分别解决了不同资源隔离的问题，前者解决了进程、网络以及文件系统的隔离，后者实现了 CPU、内存等资源的隔离，但是在 Docker 中还有另一个非常重要的问题需要解决-也就是镜像。
 >
-> Docker 镜像其实本质就是一个压缩包，我们可以使用命令将一个 Docker 镜像中的文件导出，你可以看到这个镜像中的目录结构与 Linux 操作系统的根目录中的内容并没有太多的区别，可以说
+> Docker 镜像其实本质就是一个压缩包，我们可以使用命令将一个 Docker 镜像中的文件导出，你可以看到这个镜像中的目录结构与 Linux 操作系统的根目录中的内容并没有太多的区别，可以说Docker 镜像就是一个文件。
 >
-> Docker 镜像就是一个文件。
 
-### 存储驱动
+### 29.4.7 存储驱动
 
-> Docker 使用了一系列不同的存储驱动管理镜像内的文件系统并运行容器，这些存储驱动与
->
-> Docker 卷（volume）有些不同，存储引擎管理着能够在多个容器之间共享的存储。
+> Docker 使用了一系列不同的存储驱动管理镜像内的文件系统并运行容器，这些存储驱动与Docker 卷（volume）有些不同，存储引擎管理着能够在多个容器之间共享的存储。
 >
 > 当镜像被 docker run 命令创建时就会在镜像的最上层添加一个可写的层，也就是容器层，所有对于运行时容器的修改其实都是对这个容器读写层的修改。
 >
@@ -6841,13 +6743,10 @@ c)关键字的个数 n 必须满足： ceil(m /2)-1 \<= n \<= m-1。
 >
 > UnionFS 其实是一种为 Linux 操作系统设计的用于把多个文件系统『联合』到同一个挂载点的文件系统服务。而 AUFS 即 Advanced UnionFS 其实就是 UnionFS 的升级版，它能够提供更优秀的性能和效率。
 >
-> AUFS 只是 Docker 使用的存储驱动的一种，除了 AUFS 之外，Docker 还支持了不同的存储驱动，包括 aufs、devicemapper、overlay2、zfs 和 vfs 等等，在最新的 Docker 中，overlay2 取代了
+> AUFS 只是 Docker 使用的存储驱动的一种，除了 AUFS 之外，Docker 还支持了不同的存储驱动，包括 aufs、devicemapper、overlay2、zfs 和 vfs 等等，在最新的 Docker 中，overlay2 取代了aufs 成为了推荐的存储驱动，但是在没有 overlay2 驱动的机器上仍然会使用 aufs 作为 Docker的默认驱动。
 >
-> aufs 成为了推荐的存储驱动，但是在没有 overlay2 驱动的机器上仍然会使用 aufs 作为 Docker
->
-> 的默认驱动。
 
-## Openstack
+## 29.5 Openstack
 
 
 
