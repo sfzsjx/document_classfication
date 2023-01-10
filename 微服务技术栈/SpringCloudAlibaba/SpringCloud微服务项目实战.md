@@ -36,7 +36,8 @@ https://gitee.com/banxian-yao/geekbang-coupon-center.git
 
 ![](Spring Cloud 微服务项目实战.assets/1.jpeg)
 
-<center>微服务“三大功能，两大特性”
+<center>微服务“三大功能，两大特性”</center>
+
 
 三大功能是指微服务核心组件的功能维度，由浅入深层次递进；而两大特性是构建在每个服务组件之上的高可用性和高可扩展性。
 
@@ -132,7 +133,8 @@ https://gitee.com/banxian-yao/geekbang-coupon-center.git
 
 ![](Spring Cloud 微服务项目实战.assets/2.jpeg)
 
-<center>“微服务”的谷歌搜索指数
+<center>“微服务”的谷歌搜索指数</center>
+
 
 其实，微服务并不是一个新兴的技术概念，很早之前它就已经进入了公众视野。
 
@@ -236,7 +238,8 @@ Spring Cloud 可谓出身名门，它由 Spring 开源社区主导孵化的，�
 
 ![](Spring Cloud 微服务项目实战.assets/3.jpeg)
 
-<center>Spring社区发布的一张简化的架构图
+<center>Spring社区发布的一张简化的架构图</center>
+
 
 在上面这幅图中，我们可以看到有几个 Spring Boot Apps 的应用集群，这就是经过拆分后的微服务。Spring Cloud 和 Spring Boot 达成了一种默契的配合：Spring Boot 主内，通过自动装配和各种开箱即用的特性，搞定了数据层访问、RESTful 接口、日志组件、内置容器等等基础功能，让开发人员不费吹灰之力就可以搭建起一个应用；Spring Cloud 主外，在应用集群之外提供了各种分布式系统的支持特性，帮助你轻松实现负载均衡、熔断降级、配置管理等诸多微服务领域的功能。
 
