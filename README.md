@@ -169,7 +169,7 @@
 ---
 
 - [Flink 入门指南](大数据技术栈/数据计算/flink/flink-尚.md)
-- [Flink TableAPI和SQL](大数据技术栈/数据计算/flink/FLINK tableAPI和SQL.md)
+- [Flink TableAPI和SQL](大数据技术栈/数据计算/flink/FLINKtableAPI和SQL.md)
 - [Flink 源码学习](大数据技术栈/数据计算/flink/flink源码学习.md)
 - [Flink CDC入门指南](大数据技术栈/数据计算/flink/flink-cdc-尚硅谷.md)
 - [Flink 调优指南](大数据技术栈/数据计算/flink/flink优化2.0.md)
