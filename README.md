@@ -169,8 +169,7 @@
 ---
 
 - [Flink 入门指南](大数据技术栈/数据计算/flink/flink-尚.md)
-
-- [Flink TableAPI和SQL](大数据技术栈/数据计算/flink/FLINK-tableAPI和SQL.md)
+- [Flink TableAPI和SQL](大数据技术栈/数据计算/flink/FLINK tableAPI和SQL.md)
 - [Flink 源码学习](大数据技术栈/数据计算/flink/flink源码学习.md)
 - [Flink CDC入门指南](大数据技术栈/数据计算/flink/flink-cdc-尚硅谷.md)
 - [Flink 调优指南](大数据技术栈/数据计算/flink/flink优化2.0.md)
@@ -180,6 +179,7 @@
 - [Flink 实时数仓-DWM层业务实现](大数据技术栈/数据计算/flink/flink实时数仓/3.DWM层业务实现.md)
 - [Flink 实时数仓-DWS层业务实现](大数据技术栈/数据计算/flink/flink实时数仓/4.DWS层业务实现.md)
 - [Flink 实时数仓-数据可视化接口实现](大数据技术栈/数据计算/flink/flink实时数仓/6.数据可视化接口实现.md)
+- [Flink SQL 成神之路](大数据技术栈/数据计算/flink/FlinkSQL成神之路.md)
 
 
 
