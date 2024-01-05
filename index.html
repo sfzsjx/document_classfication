@@ -30,7 +30,13 @@
         placeholder: '搜索',
         noData: 'No Results!',
         depth: 6          // 搜索标题的最大程级, 1 - 6
-      }
+      },
+       // docsify-plugin-toc
+      toc: {
+        tocMaxLevel: 5,
+        target: 'h1, h2, h3, h4, h5',
+        ignoreHeaders:  ['<!-- {docsify-ignore} -->', '<!-- {docsify-ignore-all} -->']
+      },
     }
   </script>
   <!-- Docsify v4 -->
@@ -51,5 +57,13 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sh.min.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+   <script src="https://gcore.jsdelivr.net/gh/Sumsung524/docsify-backTop/dist/docsify-backTop.min.js"></script>
+    <!-- 图片放大缩小支持 -->
+  <script src="//gcore.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!-- 字数插件 -->
+  <script src="https://gcore.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+  <!-- 分页导航 -->
+  <script src="//gcore.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
 </body>
 </html>
